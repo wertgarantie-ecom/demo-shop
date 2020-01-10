@@ -1,0 +1,2 @@
+[![Heroku](https://heroku-badge.herokuapp.com/?app=wertgarantie-demo-shop&root=healthcheck)](https://wertgarantie-demo-shop.herokuapp.com)
+[![CircleCI](https://circleci.com/gh/wertgarantie-ecom/bifrost/tree/master.svg?style=svg&circle-token=f048ebb6567d711f613d70f7091bc60f268da9ae)](https://circleci.com/gh/wertgarantie-ecom/bifrost/tree/master)

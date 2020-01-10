@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+    <link rel="stylesheet" href="/css/shoppingCart.css">
+    <link rel="stylesheet" href="/css/newShoppingCartItem.css">
+    <title>Zum Einkaufswagen hinzugefügt</title>
+</head>
+<body>
+    <h1>Neues Produkt im Einkaufswagen</h1>
+    <div class="header-bar">
+        <div class="header-bar__element dummy-product-link">
+            <a href="/demoshop">Dummy-Produkt</a>
+        </div>
+        <div class="header-bar__element">
+            <a href="/demoshop/shoppingCart">Warenkorb</a>
+        </div>
+    </div>
+    <hr/>   
+    
+    <h3>Zum Einkaufswagen hinzugefügt:</h3>
+    <div class="added-item">
+        <div class="image-container">
+            <img class="image--small" src="https://cdn.pixabay.com/photo/2016/07/20/20/46/electric-bicycle-1531261_1280.jpg">
+        </div>
+        <div class="product-name">
+            <%= productName %>
+        </div>
+        <div class="product-price">
+            <%= devicePrice %> €
+        </div>
+        <wertgarantie-rating data-fetch-uri="https://wertgarantie-bifrost.herokuapp.com/wertgarantie/rating"></wertgarantie-rating>
+    </div>
+    <wertgarantie-selection-pop-up id="selection"
+                               data-shop-product-name="<%= productName %>"
+                               data-bifrost-uri="<%= bifrostUri %>">
+    </wertgarantie-selection-pop-up>
+
+    <script src="<%= popupComponentUri %>"></script>
+    <script src="<%= ratingComponentUri %>"></script>
+    <script>
+        window.onload = function() {
+            var selection = document.getElementById('selection');
+            selection.devicePrice = <%= devicePrice %> ;
+            selection.deviceClass = "<%= deviceClass %>" ;
+            selection.clientId = "<%= publicClientId %>";
+
+            window.wertgarantieSelectionPopUpOpen('#' + selection.id);
+        }
+    </script>
+    <!-- deviceClass: "6bdd2d93-45d0-49e1-8a0c-98eb80342222",
+        devicePrice: 1399.99,
+        productName: "E-Mtb-3000",
+        productId: productId,
+        publicClientId: publicClientId -->
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy-Produkt</title>
+    <link rel="stylesheet" href="/css/dummyProduct.css">
+</head>
+<body>
+    <h1>Willkommen im Dummy-Shop mit nur einem Produkt</h1>
+    <div class="header-bar">
+        <div class="header-bar__element dummy-product-link">
+            <a href="/demoshop">Dummy-Produkt</a>
+        </div>
+        <div class="header-bar__element">
+            <a href="/demoshop/shoppingCart">Warenkorb</a>
+        </div>
+    </div>
+    <hr/>
+
+    <div class="product-selection">
+        <div class="product-selection__image">
+            <img src="https://cdn.pixabay.com/photo/2016/07/20/20/46/electric-bicycle-1531261_1280.jpg">
+        </div>
+        <div class="product-selection__info">
+            <h3>Produktinformation</h3>
+            <div class="info__description">
+                <p>E-Mountainbike Premium 3000</p>
+                <p>Komponenten:</p>
+                <ul>
+                    <li>Reifen</li>
+                    <li>Bremse</li>
+                    <li>ohne Gepäckträger</li>
+                    <li>Kettenschaltung</li>
+                </ul>
+            </div>
+            <div class="info__description">
+                <h4>Preis:</h4>
+                <p>1399,99€</p>
+            </div>
+            <div class="order-panel">
+                <form>
+                    <input type="hidden" value="E-Mountainbike Premium 3000" name="productName">
+                    <input type="hidden" value="1399.99" name="productPrice">
+                    <input type="hidden" value="efb026ec-14cd-4dfd-9056-37cb23f8f5b2" name="productId">
+                    <button class="submit-button" formaction="/demoshop/addToShoppingCart" formmethod="POST">In den Warenkorb</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 3em;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+}
+
+.header-bar__element {
+    padding: 2em;
+    border: 2px solid black;
+}
+
+.dummy-product-link {
+    width: 20%;
+    text-align: center;
+}
+
+.product-selection {
+    display: flex;
+}
+
+.product-selection__image {
+    max-width: 60%;
+}
+
+.product-selection__image img {
+    max-width: 100%;
+}
+
+.product-selection__info {
+    padding-left: 2em;
+}
+
+.submit-button {
+    font-size: 0.9em;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    padding: 1.5em 3em 1.5em 3em;
+    margin: 3px;
+    border: 2px solid black;
+}

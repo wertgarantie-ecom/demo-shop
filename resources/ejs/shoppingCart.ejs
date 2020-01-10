@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+    <link rel="stylesheet" href="/css/shoppingCart.css">
+    <title>Warenkorb</title>
+</head>
+<body>
+    <h1>Warenkorb des Dummy Shops mit nur einem Produkt</h1>
+    <div class="header-bar">
+        <div class="header-bar__element dummy-product-link">
+            <a href="/demoshop">Dummy-Produkt</a>
+        </div>
+        <div class="header-bar__element">
+            <a href="/demoshop/shoppingCart">Warenkorb</a>
+        </div>
+    </div>
+    <hr/>   
+
+    <div class="shopping-cart-data">
+        <div class="table-head">
+            <div class="table-row">
+                <div class="table-head__item">Produkt</div>
+                <div class="table-head__item">Preis</div>
+            </div>
+        </div>
+        <div class="table-body">
+            <% var sum = 0; %>
+            <% if (cart) { %>
+                <% for (var i = 0; i < cart.products.length; i++) { %>
+                    <div class="table-row">
+                        <div class="table-body__item"><%= cart.products[i].productName %></div>
+                        <div class="table-body__item"><%= cart.products[i].productPrice %></div>
+                    </div>
+                    <% sum += parseFloat(cart.products[i].productPrice) %>
+                <% } %>
+            <% } else { %>
+                <h3>
+                    Es ist noch kein Artikel im Warenkorb
+                </h3>
+            <% } %>
+        </div>
+        <div class="shopping-cart-bottom">
+            <div>
+                <div class="sum-title">
+                    <h2>Gesamtsumme</h2>
+                </div>
+                <div class="sum">
+                    <%= sum %>
+                </div>
+            </div>
+        </div>
+        <form id="checkout-form" action="/demoshop/checkout" method="POST">
+            <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
+        <!-- <form id="checkout-form" action="/demoshop/checkout" method="POST" onsubmit="return checkConfirmationComponent()"> -->
+            <div class="confirmation-container">
+                <wertgarantie-confirmation
+                    id="wg-confirmation"
+                    data-form-selector="#checkout-form"
+                    data-hidden-input-selector="#wertgarantie-cookie"
+                    data-client-id="<%= publicClientId %>"
+                    data-bifrost-uri="<%= bifrostUri %>">
+                </wertgarantie-confirmation>
+            </div>
+            <div class="shopping-cart-bottom">
+                <div>
+                    <div class="checkout-button-div">
+                        <input type="submit" class="checkoutBtn" value="Checkout"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="<%= confirmationComponentUri %>"></script>
+</body>
+</html>

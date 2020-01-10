@@ -1,0 +1,24 @@
+{
+  "name": "demo-shop",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=prod node ./bin/www",
+    "start-dev": "NODE_ENV=local PORT=3002 nodemon ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.19.1",
+    "cookie-parser": "1.4.4",
+    "debug": "2.6.9",
+    "dotenv": "8.2.0",
+    "ejs": "3.0.1",
+    "express": "4.16.1",
+    "express-healthcheck": "0.1.0",
+    "express-jsonschema": "1.1.6",
+    "http-errors": "1.6.3",
+    "morgan": "1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0"
+  }
+}
