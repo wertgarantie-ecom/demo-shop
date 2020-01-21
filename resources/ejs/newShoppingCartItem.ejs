@@ -19,8 +19,8 @@
             <a href="/demoshop/shoppingCart">Warenkorb</a>
         </div>
     </div>
-    <hr/>   
-    
+    <hr/>
+
     <h3>Zum Einkaufswagen hinzugefügt:</h3>
     <div class="added-item">
         <div class="image-container">
@@ -39,16 +39,17 @@
                                data-bifrost-uri="<%= bifrostUri %>">
     </wertgarantie-selection-pop-up>
 
-    <script src="<%= popupComponentUri %>"></script>
-    <script src="<%= ratingComponentUri %>"></script>
+    <script src="<%= popupComponentUri %>" type="module" crossorigin="use-credentials" ></script>
+    <script src="<%= ratingComponentUri %>" type="module" crossorigin="use-credentials"></script>
     <script>
         window.onload = function() {
             var selection = document.getElementById('selection');
-            selection.devicePrice = <%= devicePrice %> ;
+            selection.devicePrice = "<%= devicePrice %>" ;
             selection.deviceClass = "<%= deviceClass %>" ;
             selection.clientId = "<%= publicClientId %>";
-
-            window.wertgarantieSelectionPopUpOpen('#' + selection.id);
+            if (window.wertgarantieSelectionPopUpOpen) {
+                window.wertgarantieSelectionPopUpOpen('#' + selection.id);
+            }
         }
     </script>
     <!-- deviceClass: "6bdd2d93-45d0-49e1-8a0c-98eb80342222",
