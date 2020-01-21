@@ -82,17 +82,20 @@ exports.checkout = async function checkout(req, res, next) {
             data: wertgarantieCheckoutData
         });
         console.log("Bifrost response: " + JSON.stringify(checkoutResult.data, null, 2));
+        res.render('purchaseComplete', {
+            orderedProducts: shopProducts,
+            orderId: newOrderId,
+            wertgarantieResponse: JSON.stringify(checkoutResult.data, null, 2)
+        })
     } catch (e) {
-        console.error(JSON.stringify(e.response.data, null, 2));
+        if (e.response) {
+            console.error(`bifrost responded with status ${e.response.statusCode} and message ${JSON.stringify(e.response.data, null, 2)}`);
+        } else {
+            console.error(`could not connect to bifrost: ${e.message}`);
+        }
         next(e);
     }
 
-
-    res.render('purchaseComplete', {
-        orderedProducts: shopProducts,
-        orderId: newOrderId,
-        wertgarantieResponse: JSON.stringify(checkoutResult.data, null, 2)
-    })
 };
 
 exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
