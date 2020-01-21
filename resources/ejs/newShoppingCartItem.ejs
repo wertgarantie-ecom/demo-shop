@@ -39,8 +39,8 @@
                                data-bifrost-uri="<%= bifrostUri %>">
     </wertgarantie-selection-pop-up>
 
-    <script src="<%= popupComponentUri %>" type="module" crossorigin="use-credentials" ></script>
-    <script src="<%= ratingComponentUri %>" type="module" crossorigin="use-credentials"></script>
+    <script type="module" src="<%= popupComponentUri %>" crossorigin="anonymous" ></script>
+    <script type="module" src="<%= ratingComponentUri %>" crossorigin="anonymous"></script>
     <script>
         window.onload = function() {
             var selection = document.getElementById('selection');
