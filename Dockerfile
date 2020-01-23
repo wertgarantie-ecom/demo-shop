@@ -6,6 +6,6 @@ RUN npm install
 
 COPY . /app/demoshop/
 
-EXPOSE 3002
+EXPOSE 3000
 
-CMD NODE_ENV=local PORT=3002 node ./bin/www
+CMD npm run start-docker-compose
