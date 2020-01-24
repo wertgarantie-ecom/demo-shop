@@ -32,7 +32,6 @@
         <div class="product-price">
             <%= devicePrice %> €
         </div>
-        <wertgarantie-rating></wertgarantie-rating>
     </div>
     <wertgarantie-selection-pop-up id="selection"
                                data-shop-product-name="<%= productName %>"
@@ -40,7 +39,6 @@
     </wertgarantie-selection-pop-up>
 
     <script type="module" src="<%= popupComponentUri %>" crossorigin="anonymous" ></script>
-    <script type="module" src="<%= ratingComponentUri %>" crossorigin="anonymous"></script>
     <script>
         window.onload = function() {
             var selection = document.getElementById('selection');

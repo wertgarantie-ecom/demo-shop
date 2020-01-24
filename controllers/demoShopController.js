@@ -20,7 +20,10 @@ const customerData = {
 };
 
 exports.showShopIndex = function showShopIndex(req, res) {
-    res.render("dummyProduct");
+    res.render("dummyProduct", {
+        bifrostUri: BIFROST_URI,
+        ratingComponentUri: COMPONENT_RATING
+    });
 };
 
 exports.showShoppingCart = function showShoppingCart(req, res) {
@@ -75,6 +78,7 @@ exports.checkout = async function checkout(req, res, next) {
 
     // 2: call bifrost for wertgarantie checkout
     var checkoutResult;
+    console.log(BIFROST_URI + '/shoppingCarts/current/checkout');
     try {
         checkoutResult = await axios({
             method: 'post',
