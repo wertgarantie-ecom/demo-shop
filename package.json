@@ -16,7 +16,6 @@
     "express": "4.16.1",
     "express-healthcheck": "0.1.0",
     "express-jsonschema": "1.1.6",
-    "git-rev-promises": "^1.1.0",
     "http-errors": "1.6.3",
     "morgan": "1.9.1",
     "uuid": "^3.3.3"

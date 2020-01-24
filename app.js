@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '/resources')));
 
 app.use('/healthcheck', require('express-healthcheck')());
-app.use('/git', require('./controllers/gitInfoController'));
+app.use('/heroku', require('./controllers/herokuController'));
 app.use('/demoshop', require('./routes/demoshopRoutes'));
 
 app.use(bodyParser.json());
