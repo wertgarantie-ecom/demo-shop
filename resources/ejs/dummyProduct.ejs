@@ -46,7 +46,12 @@
                     <button class="submit-button" formaction="/demoshop/addToShoppingCart" formmethod="POST">In den Warenkorb</button>
                 </form>
             </div>
+            <div>
+                <p>Erhalten Sie Versicherungsangebote der Wertgarantie zu diesem Produkt. Einfach in den Warenkorb legen.</p>
+                Wertgarantie: <wertgarantie-rating data-bifrost-uri="<%= bifrostUri %>"></wertgarantie-rating>
+            </div>
         </div>
     </div>
+    <script type="module" src="<%= ratingComponentUri %>" crossorigin="anonymous"></script>
 </body>
 </html>
