@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '/resources')));
 
 app.use('/healthcheck', require('express-healthcheck')());
 app.use('/heroku', require('./controllers/herokuController'));
-app.use('/demoshop', require('./routes/demoshopRoutes'));
+app.use('/', require('./routes/demoshopRoutes'));
 
 app.use(bodyParser.json());
 

@@ -12,10 +12,10 @@
     <h1>Warenkorb des Dummy Shops mit nur einem Produkt</h1>
     <div class="header-bar">
         <div class="header-bar__element dummy-product-link">
-            <a href="/demoshop">Dummy-Produkt</a>
+            <a href="/">Dummy-Produkt</a>
         </div>
         <div class="header-bar__element">
-            <a href="/demoshop/shoppingCart">Warenkorb</a>
+            <a href="/shoppingCart">Warenkorb</a>
         </div>
     </div>
     <hr/>   
@@ -53,9 +53,8 @@
                 </div>
             </div>
         </div>
-        <form id="checkout-form" action="/demoshop/checkout" method="POST">
+        <form id="checkout-form" action="/checkout" method="POST">
             <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
-        <!-- <form id="checkout-form" action="/demoshop/checkout" method="POST" onsubmit="return checkConfirmationComponent()"> -->
             <div class="confirmation-container">
                 <wertgarantie-confirmation
                     id="wg-confirmation"

@@ -26,6 +26,10 @@ exports.showShopIndex = function showShopIndex(req, res) {
     });
 };
 
+exports.redirectToIndex = function redirectToIndex(req, res) {
+    res.redirect("/");
+};
+
 exports.showShoppingCart = function showShoppingCart(req, res) {
     const shoppingCartData = req.cookies.dummyshop;
     res.render("shoppingCart", {
@@ -48,7 +52,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
             productPrice: req.body.productPrice,
         });
     res.cookie('dummyshop', dummyshopCookie);
-    res.redirect('/demoShop/newShoppingCartItem');
+    res.redirect('/newShoppingCartItem');
 };
 
 exports.checkout = async function checkout(req, res, next) {
