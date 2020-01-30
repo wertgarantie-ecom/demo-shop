@@ -1,7 +1,7 @@
 const uuid = require('uuid');
 const axios = require('axios');
 
-const publicClientId = "5209d6ea-1a6e-11ea-9f8d-778f0ad9137f";
+const publicClientId = process.env.PUBLIC_CLIENT_ID;
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
@@ -64,7 +64,7 @@ exports.checkout = async function checkout(req, res, next) {
         purchasedShopProducts.push({
             price: product.productPrice * 100,
             manufacturer: "XXXBike Inc.",
-            deviceClass: "6bdd2d93-45d0-49e1-8a0c-98eb80342222",
+            deviceClass: process.env.DEVICE_CLASS,
             model: product.productName,
         });
     });
@@ -109,9 +109,9 @@ exports.checkout = async function checkout(req, res, next) {
 exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
     res.cookie('insurable', true);
     res.render('newShoppingCartItem', {
-        deviceClass: "6bdd2d93-45d0-49e1-8a0c-98eb80342222",
-        devicePrice: 139999,
-        productName: "E-Mountainbike Premium 3000",
+        deviceClass: process.env.DEVICE_CLASS,
+        devicePrice: process.env.DEVICE_PRICE,
+        productName: process.env.PRODUCT_NAME,
         publicClientId: publicClientId,
         bifrostUri: BIFROST_URI,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,
