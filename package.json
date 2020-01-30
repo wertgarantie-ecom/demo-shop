@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "start-local": "NODE_ENV=local PORT=3002 nodemon ./bin/www",
-    "start-docker-compose": "nodemon ./bin/www"
+    "start-docker-compose": "NODE_ENV=dockerlocal nodemon ./bin/www"
   },
   "dependencies": {
     "axios": "^0.19.1",

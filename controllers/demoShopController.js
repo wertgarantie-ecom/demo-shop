@@ -72,7 +72,7 @@ exports.checkout = async function checkout(req, res, next) {
     const wertgarantieCheckoutData = {
         purchasedProducts: purchasedShopProducts,
         customer: customerData,
-        secretClientId: "bikesecret1",
+        secretClientId: process.env.SECRET,
         wertgarantieShoppingCart: wertgarantieCookieData
     };
 
@@ -97,7 +97,7 @@ exports.checkout = async function checkout(req, res, next) {
         })
     } catch (e) {
         if (e.response) {
-            console.error(`bifrost responded with status ${e.response.statusCode} and message ${JSON.stringify(e.response.data, null, 2)}`);
+            console.error(`bifrost responded with status ${e.response.status} and message ${JSON.stringify(e.response.data, null, 2)}`);
         } else {
             console.error(`could not connect to bifrost: ${e.message}`);
         }
@@ -112,7 +112,7 @@ exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
         deviceClass: process.env.DEVICE_CLASS,
         devicePrice: process.env.DEVICE_PRICE,
         productName: process.env.PRODUCT_NAME,
-        publicClientId: publicClientId,
+        clientId: publicClientId,
         bifrostUri: BIFROST_URI,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,
         ratingComponentUri: COMPONENT_RATING
