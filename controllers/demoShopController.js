@@ -6,6 +6,7 @@ const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
 const BIFROST_URI = process.env.BIFROST_URI;
+const BIFROST_URI_FOR_FE_COMPONENTS = process.env.BIFROST_URI_FOR_FE_COMPONENTS || process.env.BIFROST_URI;
 
 const customerData = {
     company: 'INNOQ',
@@ -21,7 +22,7 @@ const customerData = {
 
 exports.showShopIndex = function showShopIndex(req, res) {
     res.render("dummyProduct", {
-        bifrostUri: BIFROST_URI,
+        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         ratingComponentUri: COMPONENT_RATING
     });
 };
@@ -35,7 +36,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
     res.render("shoppingCart", {
         cart: shoppingCartData,
         publicClientId: publicClientId,
-        bifrostUri: BIFROST_URI,
+        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         confirmationComponentUri: COMPONENT_CONFIRMATION
     });
 };
@@ -82,7 +83,6 @@ exports.checkout = async function checkout(req, res, next) {
 
     // 2: call bifrost for wertgarantie checkout
     var checkoutResult;
-    console.log(BIFROST_URI + '/shoppingCarts/current/checkout');
     try {
         checkoutResult = await axios({
             method: 'post',
@@ -113,7 +113,7 @@ exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
         devicePrice: process.env.DEVICE_PRICE,
         productName: process.env.PRODUCT_NAME,
         clientId: publicClientId,
-        bifrostUri: BIFROST_URI,
+        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,
         ratingComponentUri: COMPONENT_RATING
     })
