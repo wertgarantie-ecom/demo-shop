@@ -74,7 +74,7 @@ exports.checkout = async function checkout(req, res, next) {
         purchasedProducts: purchasedShopProducts,
         customer: customerData,
         secretClientId: process.env.SECRET,
-        wertgarantieShoppingCart: wertgarantieCookieData
+        signedShoppingCart: wertgarantieCookieData
     };
 
     // 1: checkout in shop
