@@ -46,9 +46,7 @@
         selection.devicePrice = "<%= devicePrice %>";
         selection.deviceClass = "<%= deviceClass %>";
         selection.clientId = "<%= clientId %>";
-        if (window.wertgarantieSelectionPopUpOpen) {
-            window.wertgarantieSelectionPopUpOpen('#' + selection.id);
-        }
+        selection.displayComponent();
     }
 </script>
 </body>
