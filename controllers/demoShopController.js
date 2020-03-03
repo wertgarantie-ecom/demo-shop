@@ -57,7 +57,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
 };
 
 exports.checkout = async function checkout(req, res, next) {
-    const wertgarantieCookieData = req.body['wertgarantie-cookie-data'];
+    const wertgarantieCookieData = req.cookies['wertgarantie-shopping-cart-data'];
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
     const purchasedShopProducts = [];
