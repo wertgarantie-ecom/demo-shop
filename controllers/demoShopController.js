@@ -14,7 +14,7 @@ const customerData = {
     salutation: 'Herr',
     firstname: 'Max',
     lastname: 'Mustermann',
-    street: 'Unter den Linden',
+    street: 'Unter den Linden 9',
     zip: '52345',
     city: 'Köln',
     country: 'Deutschland',
