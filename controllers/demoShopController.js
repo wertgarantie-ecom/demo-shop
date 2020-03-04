@@ -1,7 +1,7 @@
 const uuid = require('uuid');
 const axios = require('axios');
 
-const publicClientId = process.env.PUBLIC_CLIENT_ID;
+const PUBLIC_CLIENT_ID = process.env.PUBLIC_CLIENT_ID;
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
@@ -35,7 +35,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
     const shoppingCartData = req.cookies.dummyshop;
     res.render("shoppingCart", {
         cart: shoppingCartData,
-        publicClientId: publicClientId,
+        publicClientId: PUBLIC_CLIENT_ID,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         confirmationComponentUri: COMPONENT_CONFIRMATION
     });
@@ -64,7 +64,7 @@ exports.checkout = async function checkout(req, res, next) {
     shopProducts.forEach(product => {
         purchasedShopProducts.push({
             price: product.productPrice * 100,
-            manufacturer: "XXXBike Inc.",
+            manufacturer: "XXXPhones Inc.",
             deviceClass: process.env.DEVICE_CLASS,
             model: product.productName,
         });
@@ -105,18 +105,13 @@ exports.checkout = async function checkout(req, res, next) {
     }
 };
 
-function getCookieValue(cookie, cookieName) {
-    const cookieContent = cookie.match('(^|[^;]+)\\s*' + cookieName + '\\s*=\\s*([^;]+)');
-    return cookieContent ? JSON.parse(cookieContent.pop()) : undefined;
-}
-
 exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
     res.cookie('insurable', true);
     res.render('newShoppingCartItem', {
         deviceClass: process.env.DEVICE_CLASS,
         devicePrice: process.env.DEVICE_PRICE,
         productName: process.env.PRODUCT_NAME,
-        clientId: publicClientId,
+        clientId: PUBLIC_CLIENT_ID,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,
         ratingComponentUri: COMPONENT_RATING
