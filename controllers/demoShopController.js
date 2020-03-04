@@ -68,6 +68,7 @@ exports.checkout = async function checkout(req, res, next) {
             manufacturer: "XXXPhones Inc.",
             deviceClass: process.env.DEVICE_CLASS,
             model: product.productName,
+            deviceOS: product.deviceOS
         });
     });
 
