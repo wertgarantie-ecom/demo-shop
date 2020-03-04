@@ -1,6 +1,7 @@
 const uuid = require('uuid');
 const axios = require('axios');
 
+const CUSTOMER_EMAIL = process.env.CUSTOMER_EMAIL || 'max.mustermann1234@test.com';
 const PUBLIC_CLIENT_ID = process.env.PUBLIC_CLIENT_ID;
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
@@ -17,7 +18,7 @@ const customerData = {
     zip: '52345',
     city: 'Köln',
     country: 'Deutschland',
-    email: 'max.mustermann1234@test.com'
+    email: CUSTOMER_EMAIL
 };
 
 exports.showShopIndex = function showShopIndex(req, res) {
