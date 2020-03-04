@@ -52,7 +52,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
         {
             productName: req.body.productName,
             productPrice: req.body.productPrice,
-            deviceOS: "android"
+            deviceOS: "Ubuntu"
         });
     res.cookie('dummyshop', dummyshopCookie);
     res.redirect('/newShoppingCartItem');
