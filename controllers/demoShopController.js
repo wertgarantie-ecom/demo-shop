@@ -57,7 +57,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
 };
 
 exports.checkout = async function checkout(req, res, next) {
-    const wertgarantieCookieData = req.body['wertgarantie-cookie-data'];
+    const wertgarantieCookieData = getCookieValue(req.header('cookie'), 'wertgarantie-shopping-cart');
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
     const purchasedShopProducts = [];
@@ -103,8 +103,12 @@ exports.checkout = async function checkout(req, res, next) {
         }
         next(e);
     }
-
 };
+
+function getCookieValue(cookie, cookieName) {
+    const cookieContent = cookie.match('(^|[^;]+)\\s*' + cookieName + '\\s*=\\s*([^;]+)');
+    return cookieContent ? JSON.parse(cookieContent.pop()) : undefined;
+}
 
 exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
     res.cookie('insurable', true);
