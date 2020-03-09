@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/dummyProduct.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
     <title>Vielen Dank für Ihren Einkauf</title>
 </head>
 <body>
@@ -25,8 +26,8 @@
         <li><%= product.productName %></li>
     <% }) %>
 </ul>
-<h4>Bestellte Versicherungen:</h4>
-<textarea cols=200 rows=50><%= wertgarantieResponse %></textarea>
+<wertgarantie-after-sales data-bifrost-uri="<%= bifrostUriForFEComponents %>"></wertgarantie-after-sales>
 
+<script type="module" src="<%= afterSalesComponentUri %>" crossorigin="anonymous"></script>
 </body>
 </html>
