@@ -96,7 +96,8 @@ exports.checkout = async function checkout(req, res, next) {
         res.render('purchaseComplete', {
             orderedProducts: shopProducts,
             orderId: newOrderId,
-            wertgarantieResponse: JSON.stringify(checkoutResult.data, null, 2)
+            bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
+            afterSalesComponentUri: process.env.COMPONENT_AFTER_SALES
         })
     } catch (e) {
         if (e.response) {
