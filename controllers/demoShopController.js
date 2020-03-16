@@ -58,8 +58,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
 };
 
 exports.checkout = async function checkout(req, res, next) {
-    const base64EncodedWGData = Buffer.from(req.cookies['wertgarantie-shopping-cart-data'], 'base64');
-    const wertgarantieCookieData = JSON.parse(base64EncodedWGData.toString('utf-8'));
+    const wertgarantieCookieData = JSON.parse(req.cookies['wertgarantie-shopping-cart']);
     const encryptedSessionId = CryptoJS.HmacSHA256(wertgarantieCookieData.shoppingCart.sessionId, process.env.SECRET).toString();
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
