@@ -26,7 +26,9 @@
         <li><%= product.productName %></li>
     <% }) %>
 </ul>
-<wertgarantie-after-sales data-bifrost-uri="<%= bifrostUriForFEComponents %>"></wertgarantie-after-sales>
+<wertgarantie-after-sales data-bifrost-uri="<%= bifrostUriForFEComponents %>"
+                          data-shop-purchase-data="<%= wertgarantieCheckoutData %>"
+></wertgarantie-after-sales>
 
 <script type="module" src="<%= afterSalesComponentUri %>" crossorigin="anonymous"></script>
 </body>

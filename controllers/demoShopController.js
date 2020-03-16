@@ -1,12 +1,11 @@
 const uuid = require('uuid');
-const axios = require('axios');
+const CryptoJS = require('crypto-js');
 
 const CUSTOMER_EMAIL = process.env.CUSTOMER_EMAIL || 'max.mustermann1234@test.com';
 const PUBLIC_CLIENT_ID = process.env.PUBLIC_CLIENT_ID;
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
-const BIFROST_URI = process.env.BIFROST_URI;
 const BIFROST_URI_FOR_FE_COMPONENTS = process.env.BIFROST_URI_FOR_FE_COMPONENTS || process.env.BIFROST_URI;
 
 const customerData = {
@@ -59,7 +58,9 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
 };
 
 exports.checkout = async function checkout(req, res, next) {
-    const wertgarantieCookieData = req.cookies['wertgarantie-shopping-cart-data'];
+    const base64EncodedWGData = Buffer.from(req.cookies['wertgarantie-shopping-cart-data'], 'base64');
+    const wertgarantieCookieData = JSON.parse(base64EncodedWGData.toString('utf-8'));
+    const encryptedSessionId = CryptoJS.HmacSHA256(wertgarantieCookieData.shoppingCart.sessionId, process.env.SECRET).toString();
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
     const purchasedShopProducts = [];
@@ -73,40 +74,26 @@ exports.checkout = async function checkout(req, res, next) {
         });
     });
 
-    const wertgarantieCheckoutData = {
+    const wertgarantieCheckoutDataBuffer = Buffer.from(JSON.stringify({
         purchasedProducts: purchasedShopProducts,
         customer: customerData,
-        secretClientId: process.env.SECRET,
-        signedShoppingCart: wertgarantieCookieData
-    };
+        encryptedSessionId: encryptedSessionId
+    }));
+
+    const wertgarantieCheckoutData = wertgarantieCheckoutDataBuffer.toString('base64');
 
     // 1: checkout in shop
     const newOrderId = uuid();
     res.clearCookie('dummyshop');
 
-    // 2: call bifrost for wertgarantie checkout
-    var checkoutResult;
-    try {
-        checkoutResult = await axios({
-            method: 'post',
-            url: BIFROST_URI + '/shoppingCarts/current/checkout',
-            data: wertgarantieCheckoutData
-        });
-        console.log("Bifrost response: " + JSON.stringify(checkoutResult.data, null, 2));
-        res.render('purchaseComplete', {
-            orderedProducts: shopProducts,
-            orderId: newOrderId,
-            bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
-            afterSalesComponentUri: process.env.COMPONENT_AFTER_SALES
-        })
-    } catch (e) {
-        if (e.response) {
-            console.error(`bifrost responded with status ${e.response.status} and message ${JSON.stringify(e.response.data, null, 2)}`);
-        } else {
-            console.error(`could not connect to bifrost: ${e.message}`);
-        }
-        next(e);
-    }
+    // 2: render new page with data for after sales component checkout
+    res.render('purchaseComplete', {
+        orderedProducts: shopProducts,
+        orderId: newOrderId,
+        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
+        afterSalesComponentUri: process.env.COMPONENT_AFTER_SALES,
+        wertgarantieCheckoutData: wertgarantieCheckoutData
+    });
 };
 
 exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
