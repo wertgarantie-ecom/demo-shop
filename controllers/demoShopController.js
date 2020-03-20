@@ -57,11 +57,12 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
     res.redirect('/newShoppingCartItem');
 };
 
-exports.checkout = async function checkout(req, res, next) {
-    const wertgarantieCookieData = JSON.parse(req.cookies['wertgarantie-shopping-cart']);
-    const encryptedSessionId = CryptoJS.HmacSHA256(wertgarantieCookieData.shoppingCart.sessionId, process.env.SECRET).toString();
-    var dummyshopCookie = req.cookies.dummyshop;
-    const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
+function createWertgarantieCheckoutData(sessionId, shopProducts) {
+    if (!sessionId) {
+        return undefined
+    }
+    const encryptedSessionId = CryptoJS.HmacSHA256(sessionId, process.env.SECRET).toString();
+
     const purchasedShopProducts = [];
     shopProducts.forEach(product => {
         purchasedShopProducts.push({
@@ -79,11 +80,18 @@ exports.checkout = async function checkout(req, res, next) {
         encryptedSessionId: encryptedSessionId
     }));
 
-    const wertgarantieCheckoutData = wertgarantieCheckoutDataBuffer.toString('base64');
+    return wertgarantieCheckoutDataBuffer.toString('base64');
+}
 
+exports.checkout = async function checkout(req, res, next) {
     // 1: checkout in shop
     const newOrderId = uuid();
     res.clearCookie('dummyshop');
+
+    const sessionId = req.cookies['wertgarantie-session-id'];
+    var dummyshopCookie = req.cookies.dummyshop;
+    const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
+    const wertgarantieCheckoutData = createWertgarantieCheckoutData(sessionId, shopProducts);
 
     // 2: render new page with data for after sales component checkout
     res.render('purchaseComplete', {
