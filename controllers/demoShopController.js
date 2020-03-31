@@ -23,7 +23,8 @@ const customerData = {
 exports.showShopIndex = function showShopIndex(req, res) {
     res.render("dummyProduct", {
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
-        ratingComponentUri: COMPONENT_RATING
+        ratingComponentUri: COMPONENT_RATING,
+        productName: process.env.PRODUCT_NAME
     });
 };
 

@@ -57,7 +57,7 @@ body {
 }
 
 .confirmation-container {
-    padding-top: 2em;
+    padding: 2em 0;
 }
 
 .checkout-button-div {
