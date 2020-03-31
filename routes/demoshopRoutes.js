@@ -9,5 +9,6 @@ router.get("/shoppingCartCookie", demoShopController.showShoppingCartCookie);
 router.post("/addToShoppingCart", demoShopController.addProductToShoppingCart);
 router.get("/newShoppingCartItem", demoShopController.newShoppingCartItem);
 router.post("/checkout", demoShopController.checkout);
+router.get("/insurances", demoShopController.insurances);
 
 module.exports = router;

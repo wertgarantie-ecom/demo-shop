@@ -5,72 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible">
     <link rel="stylesheet" href="/css/shoppingCart.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <title>Warenkorb</title>
 </head>
 <body>
-    <h1>Warenkorb des Dummy Shops mit nur einem Produkt</h1>
-    <div class="header-bar">
-        <div class="header-bar__element dummy-product-link">
-            <a href="/">Dummy-Produkt</a>
-        </div>
-        <div class="header-bar__element">
-            <a href="/shoppingCart">Warenkorb</a>
+<h1>Warenkorb des Dummy Shops mit nur einem Produkt</h1>
+<%- include('navbar') %>
+<div class="shopping-cart-data">
+    <div class="table-head">
+        <div class="table-row">
+            <div class="table-head__item">Produkt</div>
+            <div class="table-head__item">Preis</div>
         </div>
     </div>
-    <hr/>   
-
-    <div class="shopping-cart-data">
-        <div class="table-head">
-            <div class="table-row">
-                <div class="table-head__item">Produkt</div>
-                <div class="table-head__item">Preis</div>
-            </div>
-        </div>
-        <div class="table-body">
-            <% var sum = 0; %>
-            <% if (cart) { %>
-                <% for (var i = 0; i < cart.products.length; i++) { %>
-                    <div class="table-row">
-                        <div class="table-body__item"><%= cart.products[i].productName %></div>
-                        <div class="table-body__item"><%= cart.products[i].productPrice %></div>
-                    </div>
-                    <% sum += parseFloat(cart.products[i].productPrice) %>
-                <% } %>
-            <% } else { %>
-                <h3>
-                    Es ist noch kein Artikel im Warenkorb
-                </h3>
+    <div class="table-body">
+        <% var sum = 0; %>
+        <% if (cart) { %>
+            <% for (var i = 0; i < cart.products.length; i++) { %>
+                <div class="table-row">
+                    <div class="table-body__item"><%= cart.products[i].productName %></div>
+                    <div class="table-body__item"><%= cart.products[i].productPrice %></div>
+                </div>
+                <% sum += parseFloat(cart.products[i].productPrice) %>
             <% } %>
-        </div>
-        <div class="shopping-cart-bottom">
-            <div>
-                <div class="sum-title">
-                    <h2>Gesamtsumme</h2>
-                </div>
-                <div class="sum">
-                    <%= sum %>
-                </div>
+        <% } else { %>
+            <h3>
+                Es ist noch kein Artikel im Warenkorb
+            </h3>
+        <% } %>
+    </div>
+    <div class="shopping-cart-bottom">
+        <div>
+            <div class="sum-title">
+                <h2>Gesamtsumme</h2>
+            </div>
+            <div class="sum">
+                <%= sum %>
             </div>
         </div>
-        <form id="checkout-form" action="/checkout" method="POST">
-            <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
-            <div class="confirmation-container">
-                <wertgarantie-confirmation
+    </div>
+    <form id="checkout-form" action="/checkout" method="POST">
+        <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
+        <div class="confirmation-container">
+            <wertgarantie-confirmation
                     id="wg-confirmation"
                     data-form-selector="#checkout-form"
                     data-client-id="<%= publicClientId %>"
                     data-bifrost-uri="<%= bifrostUriForFEComponents %>">
-                </wertgarantie-confirmation>
-            </div>
-            <div class="shopping-cart-bottom">
-                <div>
-                    <div class="checkout-button-div">
-                        <input type="submit" class="checkoutBtn" value="Checkout"/>
-                    </div>
+            </wertgarantie-confirmation>
+        </div>
+        <div class="shopping-cart-bottom">
+            <div>
+                <div class="checkout-button-div">
+                    <input type="submit" class="checkoutBtn" value="Checkout"/>
                 </div>
             </div>
-        </form>
-    </div>
-    <script type="module" src="<%= confirmationComponentUri %>" crossorigin="anonymous"></script>
+        </div>
+    </form>
+</div>
+<script type="module" src="<%= confirmationComponentUri %>" crossorigin="anonymous"></script>
 </body>
 </html>

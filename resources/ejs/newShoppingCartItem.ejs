@@ -6,20 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/shoppingCart.css">
     <link rel="stylesheet" href="/css/newShoppingCartItem.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <title>Zum Einkaufswagen hinzugefügt</title>
 </head>
 <body>
 <h1>Neues Produkt im Einkaufswagen</h1>
-<div class="header-bar">
-    <div class="header-bar__element dummy-product-link">
-        <a href="/">Dummy-Produkt</a>
-    </div>
-    <div class="header-bar__element">
-        <a href="/shoppingCart">Warenkorb</a>
-    </div>
-</div>
-<hr/>
-
+<%- include('navbar') %>
 <h3>Zum Einkaufswagen hinzugefügt:</h3>
 <div class="added-item">
     <div class="image-container">

@@ -6,7 +6,7 @@ const PUBLIC_CLIENT_ID = process.env.PUBLIC_CLIENT_ID;
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
-const BIFROST_URI_FOR_FE_COMPONENTS = process.env.BIFROST_URI_FOR_FE_COMPONENTS || process.env.BIFROST_URI;
+const BIFROST_URI_FOR_FE_COMPONENTS = process.env.BIFROST_URI_FOR_FE_COMPONENTS || process.env.BIFROST_URI;
 
 const customerData = {
     company: 'INNOQ',
@@ -114,5 +114,12 @@ exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,
         ratingComponentUri: COMPONENT_RATING
+    })
+};
+
+exports.insurances = function insurances(req, res) {
+    res.render('insurances', {
+        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
+        landingPageComponentUri: process.env.COMPONENT_LANDING_PAGE
     })
 };

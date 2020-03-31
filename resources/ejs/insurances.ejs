@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy-Produkt</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/landingPage.css">
+</head>
+<body>
+<h1>Willkommen im Dummy-Shop mit nur einem Produkt</h1>
+<%- include('navbar') %>
+<wertgarantie-landing-page
+        class="wertgarantie-landing-page"
+        data-bifrost-uri="<%= bifrostUriForFEComponents %>"
+        data-partner-number="1755805">
+</wertgarantie-landing-page>
+
+<script type="module" src="<%= landingPageComponentUri %>" crossorigin="anonymous"></script>
+</body>
+</html>
