@@ -2,7 +2,6 @@ const uuid = require('uuid');
 const CryptoJS = require('crypto-js');
 
 const CUSTOMER_EMAIL = process.env.CUSTOMER_EMAIL || 'max.mustermann1234@test.com';
-const PUBLIC_CLIENT_ID = process.env.PUBLIC_CLIENT_ID;
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
 const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
@@ -24,7 +23,7 @@ exports.showShopIndex = function showShopIndex(req, res) {
     res.render("dummyProduct", {
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         ratingComponentUri: COMPONENT_RATING,
-        productName: process.env.PRODUCT_NAME
+        productName: req.clientConfig.productName
     });
 };
 
@@ -36,7 +35,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
     const shoppingCartData = req.cookies.dummyshop;
     res.render("shoppingCart", {
         cart: shoppingCartData,
-        publicClientId: PUBLIC_CLIENT_ID,
+        publicClientId: req.clientConfig.clientId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         confirmationComponentUri: COMPONENT_CONFIRMATION
     });
@@ -58,18 +57,18 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
     res.redirect('/newShoppingCartItem');
 };
 
-function createWertgarantieCheckoutData(sessionId, shopProducts) {
+function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
     if (!sessionId) {
         return undefined
     }
-    const encryptedSessionId = CryptoJS.HmacSHA256(sessionId, process.env.SECRET).toString();
+    const encryptedSessionId = CryptoJS.HmacSHA256(sessionId, clientConfig.secret).toString();
 
     const purchasedShopProducts = [];
     shopProducts.forEach(product => {
         purchasedShopProducts.push({
             price: product.productPrice * 100,
             manufacturer: "XXXPhones Inc.",
-            deviceClass: process.env.DEVICE_CLASS,
+            deviceClass: clientConfig.deviceClass,
             model: product.productName,
             deviceOS: product.deviceOS
         });
@@ -92,7 +91,7 @@ exports.checkout = async function checkout(req, res, next) {
     const sessionId = req.cookies['wertgarantie-session-id'];
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
-    const wertgarantieCheckoutData = createWertgarantieCheckoutData(sessionId, shopProducts);
+    const wertgarantieCheckoutData = createWertgarantieCheckoutData(sessionId, shopProducts, req.clientConfig);
 
     // 2: render new page with data for after sales component checkout
     res.render('purchaseComplete', {
@@ -106,11 +105,12 @@ exports.checkout = async function checkout(req, res, next) {
 
 exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
     res.cookie('insurable', true);
+    const clientConfig = req.clientConfig;
     res.render('newShoppingCartItem', {
-        deviceClass: process.env.DEVICE_CLASS,
-        devicePrice: process.env.DEVICE_PRICE,
-        productName: process.env.PRODUCT_NAME,
-        clientId: PUBLIC_CLIENT_ID,
+        deviceClass: clientConfig.deviceClass,
+        devicePrice: clientConfig.devicePrice,
+        productName: clientConfig.productName,
+        clientId: clientConfig.clientId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,
         ratingComponentUri: COMPONENT_RATING

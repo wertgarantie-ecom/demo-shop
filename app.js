@@ -20,13 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, '/resources')));
+app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, '/resources')));
 app.use('/healthcheck', require('express-healthcheck')());
 app.use('/heroku', require('./controllers/herokuController'));
+app.use('/', require('./filter/ClientConfigRequestFilter').loadClientConfig);
 app.use('/', require('./routes/demoshopRoutes'));
-
-app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
     next(createError(404));
