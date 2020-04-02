@@ -1,5 +1,5 @@
-config/*.env filter=git-crypt diff=git-crypt
-config/*.json filter=git-crypt diff=git-crypt
-config/dockerlocal.env !filter !diff
-config/local.env !filter !diff
-config/dev.env !filter !diff
+src/config/*.env filter=git-crypt diff=git-crypt
+src/config/*.json filter=git-crypt diff=git-crypt
+src/config/dockerlocal.env !filter !diff
+src/config/local.env !filter !diff
+src/config/dev.env !filter !diff
