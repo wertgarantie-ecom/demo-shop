@@ -32,7 +32,10 @@ exports.showShopIndex = function showShopIndex(req, res) {
     res.render("dummyProduct", {
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         ratingComponentUri: COMPONENT_RATING,
-        productName: req.clientConfig.productName
+        productName: req.clientConfig.productName,
+        productImage: req.clientConfig.productImage,
+        productAttributes: req.clientConfig.productAttributes,
+        devicePrice: parseInt(req.clientConfig.devicePrice)
     });
 };
 
@@ -119,6 +122,7 @@ exports.newShoppingCartItem = function newShoppingCartItem(req, res) {
         deviceClass: clientConfig.deviceClass,
         devicePrice: clientConfig.devicePrice,
         productName: clientConfig.productName,
+        productImage: clientConfig.productImage,
         clientId: clientConfig.clientId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         popupComponentUri: COMPONENT_SELECTION_POP_UP,

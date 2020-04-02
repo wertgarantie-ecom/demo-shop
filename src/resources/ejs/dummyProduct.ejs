@@ -13,23 +13,22 @@
 <%- include('navbar') %>
 <div class="product-selection">
     <div class="product-selection__image">
-        <img src="https://bilder.pcwelt.de/3433472_620x310_r.jpg" alt="nokia phone">
+        <img src="<%= productImage %>" alt="nokia phone">
     </div>
     <div class="product-selection__info">
         <h3>Produktinformation</h3>
         <div class="info__description">
-            <p>Flash Handy 3000 Pro</p>
-            <p>Komponenten:</p>
+            <p><%= productName %></p>
+            <p>Details:</p>
             <ul>
-                <li>Knöpfe</li>
-                <li>Antenne</li>
-                <li>Lautsprecher</li>
-                <li>Das Internet</li>
+                <% productAttributes.forEach(attribute => { %>
+                    <li><%= attribute %></li>
+                <% }); %>
             </ul>
         </div>
         <div class="info__description">
             <h4>Preis:</h4>
-            <p>860,00€</p>
+            <p><%= devicePrice/100 %> €</p>
         </div>
         <div class="order-panel">
             <form>
