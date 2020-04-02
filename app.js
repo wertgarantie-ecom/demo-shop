@@ -8,11 +8,11 @@ const dotenv = require('dotenv');
 
 var app = express();
 
-const resolvedPath = path.resolve(__dirname, './config/' + process.env.NODE_ENV + '.env');
+const resolvedPath = path.resolve(__dirname, './src/config/' + process.env.NODE_ENV + '.env');
 dotenv.config({path: resolvedPath});
 
 // view engine setup
-app.set('views', path.join(__dirname, 'resources/ejs'));
+app.set('views', path.join(__dirname, 'src/resources/ejs'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -22,11 +22,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '/resources')));
+app.use(express.static(path.join(__dirname, '/src/resources')));
 app.use('/healthcheck', require('express-healthcheck')());
-app.use('/heroku', require('./controllers/herokuController'));
-app.use('/', require('./filter/ClientConfigRequestFilter').loadClientConfig);
-app.use('/', require('./routes/demoshopRoutes'));
+app.use('/heroku', require('./src/controllers/herokuController'));
+app.use('/', require('./src/filter/ClientConfigRequestFilter').loadClientConfig);
+app.use('/', require('./src/routes/demoshopRoutes'));
 
 app.use(function (req, res, next) {
     next(createError(404));

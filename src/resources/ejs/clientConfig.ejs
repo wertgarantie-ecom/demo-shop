@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo Shop Client Configuration</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/clientConfig.css">
+</head>
+<body>
+<h1>Konfigurieren Sie hier den Client</h1>
+<%- include('navbar') %>
+<div class="centered">
+    <div class="container">
+        <h2>Aktueller Client: <%= currentClientName %></h2>
+    </div>
+    <div class="container">
+        <select id="config-selection">
+
+            <% clientSelection.forEach(client => {%>
+                <option value="<%= client.clientId%>" <%= client.name === currentClientName ? 'selected' : ''%>><%= client.name %></option>
+            <% }); %>
+        </select>
+    </div>
+    <div class="container">
+        <h4 id="change-message"></h4>
+    </div>
+</div>
+<script>
+    const clientSelection = document.getElementById('config-selection');
+    clientSelection.addEventListener('change', () => {
+       document.cookie = `clientId=${clientSelection.options[clientSelection.selectedIndex].value};`
+       document.getElementById('change-message').innerText = 'Changed client configuration to ' +  clientSelection.options[clientSelection.selectedIndex].text;
+    });
+</script>
+</body>
+</html>

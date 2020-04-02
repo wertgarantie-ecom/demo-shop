@@ -1,5 +1,6 @@
 const uuid = require('uuid');
 const CryptoJS = require('crypto-js');
+const clientDataService = require('../services/clientDataService');
 
 const CUSTOMER_EMAIL = process.env.CUSTOMER_EMAIL || 'max.mustermann1234@test.com';
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
@@ -17,6 +18,14 @@ const customerData = {
     city: 'Köln',
     country: 'Deutschland',
     email: CUSTOMER_EMAIL
+};
+
+exports.showClientConfigPage = function showClientConfigPage(req, res, next) {
+    const currentClientConfig = req.clientConfig;
+    res.render("clientConfig", {
+        clientSelection: clientDataService.getClientSelectionData(),
+        currentClientName: currentClientConfig.name
+    });
 };
 
 exports.showShopIndex = function showShopIndex(req, res) {

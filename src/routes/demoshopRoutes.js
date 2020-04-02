@@ -10,5 +10,6 @@ router.post("/addToShoppingCart", demoShopController.addProductToShoppingCart);
 router.get("/newShoppingCartItem", demoShopController.newShoppingCartItem);
 router.post("/checkout", demoShopController.checkout);
 router.get("/insurances", demoShopController.insurances);
+router.get("/clientConfig", demoShopController.showClientConfigPage);
 
 module.exports = router;
