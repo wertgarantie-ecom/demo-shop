@@ -1,3 +1,7 @@
+body {
+    max-width: 1100px;
+}
+
 .table-row {
     width: 100%;
     display: flex;
