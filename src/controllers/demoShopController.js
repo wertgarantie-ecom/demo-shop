@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const CryptoJS = require('crypto-js');
-const clientDataService = require('../services/clientDataService');
+const clientDataService = require('../services/clientConfigService');
 
 const CUSTOMER_EMAIL = process.env.CUSTOMER_EMAIL || 'max.mustermann1234@test.com';
 const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;

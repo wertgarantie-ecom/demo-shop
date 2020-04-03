@@ -1,12 +1,12 @@
-const clientConfig = getEnvironmentClientConfig(process.env.NODE_ENV); require('../config/clientConfigLocalDev');
+const clientConfig = getEnvironmentClientConfig(process.env.NODE_ENV);
 
 exports.getClientSelectionData = function getClientSelectionData() {
-  return Object.entries(clientConfig).map(([key, value]) => {
-      return {
-          clientId: key,
-          name: value.name
-      };
-  });
+    return Object.entries(clientConfig).map(([key, value]) => {
+        return {
+            clientId: key,
+            name: value.name
+        };
+    });
 };
 
 function getEnvironmentClientConfig(nodeEnv) {
@@ -17,3 +17,5 @@ function getEnvironmentClientConfig(nodeEnv) {
             return require('../config/clientConfigLocalDev');
     }
 }
+
+exports.clientConfig = clientConfig;
