@@ -11,7 +11,7 @@ workflows:
             - build
       - deploy-staging:
           requires:
-            - deploy-dev
+            - build
 jobs:
   build:
     docker:
