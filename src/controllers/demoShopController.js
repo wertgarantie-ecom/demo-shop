@@ -78,7 +78,7 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
     const purchasedShopProducts = [];
     shopProducts.forEach(product => {
         purchasedShopProducts.push({
-            price: product.productPrice * 100,
+            price: product.productPrice,
             manufacturer: "XXXPhones Inc.",
             deviceClass: clientConfig.deviceClass,
             model: product.productName,
