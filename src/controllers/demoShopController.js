@@ -62,7 +62,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
     dummyshopCookie.products.push(
         {
             productName: req.body.productName,
-            productPrice: req.body.productPrice,
+            productPrice: parseInt(req.body.productPrice),
             deviceOS: "android"
         });
     res.cookie('dummyshop', dummyshopCookie);
