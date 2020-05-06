@@ -45,6 +45,10 @@
             </div>
         </div>
     </div>
+    <wertgarantie-selection-pop-up id="selection"
+                                   data-shop-product-name="<%= popUpData.productName %>"
+                                   data-bifrost-uri="<%= bifrostUriForFEComponents %>">
+    </wertgarantie-selection-pop-up>
     <form id="checkout-form" action="/checkout" method="POST">
         <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
         <div class="confirmation-container">
@@ -65,5 +69,15 @@
     </form>
 </div>
 <script type="module" src="<%= confirmationComponentUri %>" crossorigin="anonymous"></script>
+<script type="module" src="<%= popUpData.popupComponentUri %>" crossorigin="anonymous"></script>
+<script>
+    window.onload = function () {
+        var selection = document.getElementById('selection');
+        selection.devicePrice = "<%= popUpData.devicePrice %>";
+        selection.deviceClass = "<%= popUpData.deviceClass %>";
+        selection.clientId = "<%= publicClientId %>";
+        selection.displayComponent();
+    }
+</script>
 </body>
 </html>

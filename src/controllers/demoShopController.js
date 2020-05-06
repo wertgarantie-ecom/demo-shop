@@ -45,8 +45,25 @@ exports.redirectToIndex = function redirectToIndex(req, res) {
 
 exports.showShoppingCart = function showShoppingCart(req, res) {
     const shoppingCartData = req.cookies.dummyshop;
+    const clientConfig = req.clientConfig;
+    let showPopUp = false;
+    let popUpData;
+    if (req.query.newItem === "true") {
+        showPopUp = true;
+        popUpData = {
+            deviceClass: clientConfig.deviceClass,
+            devicePrice: clientConfig.devicePrice,
+            productName: clientConfig.productName,
+            clientId: clientConfig.clientId,
+            bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
+            popupComponentUri: COMPONENT_SELECTION_POP_UP,
+            ratingComponentUri: COMPONENT_RATING
+        }
+    }
     res.render("shoppingCart", {
         cart: shoppingCartData,
+        showPopUp: showPopUp,
+        popUpData: popUpData,
         publicClientId: req.clientConfig.clientId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         confirmationComponentUri: COMPONENT_CONFIRMATION
@@ -66,7 +83,7 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
             deviceOS: "android"
         });
     res.cookie('dummyshop', dummyshopCookie);
-    res.redirect('/newShoppingCartItem');
+    res.redirect('/shoppingCart?newItem=true');
 };
 
 function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
