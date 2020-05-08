@@ -99,7 +99,8 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
             manufacturer: "XXXPhones Inc.",
             deviceClass: clientConfig.deviceClass,
             model: product.productName,
-            deviceOS: product.deviceOS
+            deviceOS: product.deviceOS,
+            orderId: uuid()
         });
     });
 
