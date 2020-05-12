@@ -8,11 +8,13 @@ const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
 const COMPONENT_RATING = process.env.COMPONENT_RATING;
 const BIFROST_URI_FOR_FE_COMPONENTS = process.env.BIFROST_URI_FOR_FE_COMPONENTS || process.env.BIFROST_URI;
 
+const CUSTOMER_FIRST_NAME = process.env.CUSTOMER_FIRST_NAME || 'Max';
+const CUSTOMER_LAST_NAME = process.env.CUSTOMER_LAST_NAME || 'Mustermann';
 const customerData = {
     company: 'INNOQ',
     salutation: 'Herr',
-    firstname: 'Max',
-    lastname: 'Mustermann',
+    firstname: CUSTOMER_FIRST_NAME,
+    lastname: CUSTOMER_LAST_NAME,
     street: 'Unter den Linden 9',
     zip: '52345',
     city: 'Köln',

@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const basicAuth = require('express-basic-auth')
 
 var app = express();
 
@@ -21,6 +22,15 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(basicAuth({
+        users: {'bifrost': process.env.BASIC_AUTH_PASSWORD},
+        challenge: true
+    }))
+}
+
 
 app.use(express.static(path.join(__dirname, '/src/resources')));
 app.use('/healthcheck', require('express-healthcheck')());

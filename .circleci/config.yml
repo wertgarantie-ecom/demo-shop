@@ -12,6 +12,9 @@ workflows:
       - deploy-staging:
           requires:
             - build
+      - deploy-production:
+          requires:
+            - build
 jobs:
   build:
     docker:
@@ -45,3 +48,11 @@ jobs:
       - heroku/deploy-via-git:
           only-branch: master
           app-name: wertgarantie-demo-shop-staging
+  deploy-production:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          only-branch: master
+          app-name: wertgarantie-demo-shop-production
