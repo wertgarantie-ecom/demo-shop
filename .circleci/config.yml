@@ -55,4 +55,4 @@ jobs:
       - heroku/install
       - heroku/deploy-via-git:
           only-branch: master
-          app-name: wertgarantie-demo-shop-production
+          app-name: wertgarantie-demo-shop-prod
