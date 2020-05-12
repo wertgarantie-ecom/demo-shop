@@ -13,6 +13,8 @@ function getEnvironmentClientConfig(nodeEnv) {
     switch (nodeEnv) {
         case 'staging':
             return require('../config/clientConfigStaging');
+        case 'production':
+            return require('../config/clientConfigProduction');
         default:
             return require('../config/clientConfigLocalDev');
     }
