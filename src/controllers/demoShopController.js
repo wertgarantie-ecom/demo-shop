@@ -57,6 +57,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
             devicePrice: clientConfig.devicePrice,
             productName: clientConfig.productName,
             clientId: clientConfig.clientId,
+            orderItemId: uuid(),
             bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
             popupComponentUri: COMPONENT_SELECTION_POP_UP,
             ratingComponentUri: COMPONENT_RATING
@@ -102,11 +103,12 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
             deviceClass: clientConfig.deviceClass,
             model: product.productName,
             deviceOS: product.deviceOS,
-            orderId: uuid()
+            orderItemId: uuid()
         });
     });
 
     const wertgarantieCheckoutDataBuffer = Buffer.from(JSON.stringify({
+        orderId: uuid(),
         purchasedProducts: purchasedShopProducts,
         customer: customerData,
         encryptedSessionId: encryptedSessionId
