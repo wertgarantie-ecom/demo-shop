@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy-Produkt</title>
+    <link rel="stylesheet" href="/css/dummyProduct.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+<h1>Willkommen im Dummy-Shop mit nur einem Produkt</h1>
+<%- include('navbar') %>
+<% shopProducts.forEach(product => { %>
+<div class="product-selection">
+    <div class="product-selection__image">
+        <img src="<%= productImage %>" alt="nokia phone">
+    </div>
+    <div class="product-selection__info">
+        <h3>Produktinformation</h3>
+        <div class="info__description">
+            <p><%= productName %></p>
+            <p>Details:</p>
+            <ul>
+                <% productAttributes.forEach(attribute => { %>
+                    <li><%= attribute %></li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="info__description">
+            <h4>Preis:</h4>
+            <p><%= devicePrice/100 %> €</p>
+        </div>
+        <div class="order-panel">
+            <form>
+                <input type="hidden" value="<%= productName %>" name="productName">
+                <input type="hidden" value="<%= devicePrice %>" name="productPrice">
+                <input type="hidden" value="efb026ec-14cd-4dfd-9056-37cb23f8f5b2" name="productId">
+                <button class="submit-button" formaction="/addToShoppingCart" formmethod="POST">In den Warenkorb
+                </button>
+            </form>
+        </div>
+        <div>
+            <p>Erhalten Sie Versicherungsangebote der Wertgarantie zu diesem Produkt. Einfach in den Warenkorb
+                legen.</p>
+            Wertgarantie:
+            <wertgarantie-rating data-bifrost-uri="<%= bifrostUriForFEComponents %>"></wertgarantie-rating>
+        </div>
+    </div>
+</div>
+<% }); %>
+<script type="module" src="<%= ratingComponentUri %>" crossorigin="anonymous"></script>
+</body>
+</html>
