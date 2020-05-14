@@ -25,15 +25,14 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
     }
     const encryptedSessionId = CryptoJS.HmacSHA256(sessionId, clientConfig.secret).toString();
 
-    const purchasedShopProducts = [];
-    shopProducts.forEach(product => {
-        purchasedShopProducts.push({
-            price: product.productPrice,
-            manufacturer: "XXXPhones Inc.",
-            deviceClass: clientConfig.deviceClass,
-            model: product.productName,
-            orderId: uuid()
-        });
+    const purchasedShopProducts = shopProducts.map(cartProduct => {
+        return {
+            price: cartProduct.selectedVariant.devicePrice,
+            manufacturer: cartProduct.product.manufacturer,
+            deviceClass: cartProduct.product.deviceClass,
+            model: cartProduct.productName,
+            orderId: cartProduct.orderItemId
+        };
     });
 
     const wertgarantieCheckoutDataBuffer = Buffer.from(JSON.stringify({
