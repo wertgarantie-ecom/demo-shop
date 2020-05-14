@@ -65,9 +65,10 @@
         </div>
         <% if (popUpData) { %>
             <wertgarantie-selection-pop-up id="selection"
-                                           data-shop-product-name="<%= popUpData.productName %>"
+                                           data-product-model="<%= popUpData.productName %>"
                                            data-device-price="<%= popUpData.devicePrice %>"
                                            data-device-class="<%= popUpData.deviceClass %>"
+                                           data-order-item-id="<%= popUpData.orderItemId %>"
                                            data-client-id="<%= publicClientId %>"
                                            data-bifrost-uri="<%= bifrostUriForFEComponents %>">
             </wertgarantie-selection-pop-up>

@@ -14,6 +14,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
     if (newShoppingCartItem) {
         showPopUp = true;
         popUpData = {
+            orderItemId: newShoppingCartItem.orderItemId,
             deviceClass: newShoppingCartItem.product.deviceClass,
             devicePrice: newShoppingCartItem.selectedVariant.devicePrice,
             productName: newShoppingCartItem.productName,
@@ -33,7 +34,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
                 manufacturer: product.manufacturer,
                 deviceClass: product.deviceClass,
                 model: product.productName,
-                orderId: product.orderItemId
+                orderItemId: product.orderItemId
             }
         }));
     }

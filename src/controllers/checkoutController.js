@@ -31,7 +31,7 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
             manufacturer: cartProduct.product.manufacturer,
             deviceClass: cartProduct.product.deviceClass,
             model: cartProduct.productName,
-            orderId: cartProduct.orderItemId
+            orderItemId: cartProduct.orderItemId
         };
     });
 
