@@ -10,79 +10,100 @@
     <title>Warenkorb</title>
 </head>
 <body>
-<h1>Warenkorb des Dummy Shops mit nur einem Produkt</h1>
+<h1>Warenkorb</h1>
 <%- include('navbar') %>
 <div class="shopping-cart-data">
     <div class="table-head">
         <div class="table-row">
-            <div class="table-head__item">Produkt</div>
-            <div class="table-head__item">Preis</div>
+            <div class="table-head__item">Produkte</div>
+                <div class="table-head__item">Preise</div>
+            </div>
         </div>
-    </div>
-    <div class="table-body">
-        <% var sum = 0; %>
-        <% if (cart) { %>
-            <% for (var i = 0; i < cart.products.length; i++) { %>
-                <div class="table-row">
-                    <div class="table-body__item"><%= cart.products[i].productName %></div>
-                    <div class="table-body__item"><%= cart.products[i].productPrice / 100 %></div>
-                </div>
-                <% sum += parseFloat(cart.products[i].productPrice) %>
+        <div class="table-body">
+            <% var sum = 0; %>
+            <% if (cart) { %>
+                <% cart.products.forEach(cartProduct => { %>
+                    <div class="table-row">
+                        <div class="table-body__item">
+                            <div class="product-name">
+                                <%= cartProduct.productName %>
+                            </div>
+                            <div class="product-variants">
+                                <% cartProduct.product.variants.forEach(variant => { %>
+                                    <form>
+                                        <input type="hidden" name="orderItemId" value="<%= cartProduct.orderItemId %>" />
+                                        <input type="hidden" name="productId" value="<%= cartProduct.product.id %>" />
+                                        <input type="hidden" name="variantId" value="<%= variant.id %>" />
+                                        <button type="submit" <%= variant.id === cartProduct.selectedVariant.id ? 'disabled="disabled"' : ''%>
+                                                class="variant-button <%= variant.id === cartProduct.selectedVariant.id ? 'variant-button--selected' : ''%>"
+                                                formaction="/changeVariant"
+                                                formmethod="POST"><%= variant.name %></button>
+                                    </form>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <div class="table-body__item"><%= cartProduct.selectedVariant.devicePrice / 100 %> €</div>
+                    </div>
+                    <hr/>
+                    <% sum += parseFloat(cartProduct.selectedVariant.devicePrice) %>
+                <% }); %>
+            <% } else { %>
+                <h3>
+                    Es ist noch kein Artikel im Warenkorb
+                </h3>
             <% } %>
-        <% } else { %>
-            <h3>
-                Es ist noch kein Artikel im Warenkorb
-            </h3>
-        <% } %>
-    </div>
-    <div class="shopping-cart-bottom">
-        <div>
-            <div class="sum-title">
-                <h2>Gesamtsumme</h2>
-            </div>
-            <div class="sum">
-                <%= sum / 100 %>
-            </div>
-        </div>
-    </div>
-    <% if (popUpData) { %>
-        <wertgarantie-selection-pop-up id="selection"
-                                       data-product-model="<%= popUpData.productName %>"
-                                       data-device-price="<%= popUpData.devicePrice %>"
-                                       data-device-class="<%= popUpData.deviceClass %>"
-                                       data-order-item-id="<%= popUpData.orderItemId %>"
-                                       data-client-id="<%= publicClientId %>"
-                                       data-bifrost-uri="<%= bifrostUriForFEComponents %>">
-        </wertgarantie-selection-pop-up>
-        <script type="module" src="<%= popUpData.popupComponentUri %>" crossorigin="anonymous"></script>
-    <% } %>
-    <form id="checkout-form" action="/checkout" method="POST">
-        <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
-        <div class="confirmation-container">
-            <wertgarantie-confirmation
-                    id="wg-confirmation"
-                    data-validation-trigger-selector="#checkout-form"
-                    data-client-id="<%= publicClientId %>"
-                    data-bifrost-uri="<%= bifrostUriForFEComponents %>">
-            </wertgarantie-confirmation>
         </div>
         <div class="shopping-cart-bottom">
             <div>
-                <div class="checkout-button-div">
-                    <input type="submit" class="checkoutBtn" value="Checkout"/>
+                <div class="sum-title">
+                    <h2>Gesamtsumme</h2>
+                </div>
+                <div class="sum">
+                    <%= sum / 100 %> €
                 </div>
             </div>
         </div>
-    </form>
-</div>
-<script type="module" src="<%= confirmationComponentUri %>" crossorigin="anonymous"></script>
-<script>
-    window.onload = function () {
-        var selection = document.getElementById('selection');
-        if (selection) {
-            selection.displayComponent();
+        <% if (popUpData) { %>
+            <wertgarantie-selection-pop-up id="selection"
+                                           data-product-model="<%= popUpData.productName %>"
+                                           data-device-price="<%= popUpData.devicePrice %>"
+                                           data-device-class="<%= popUpData.deviceClass %>"
+                                           data-order-item-id="<%= popUpData.orderItemId %>"
+                                           data-client-id="<%= publicClientId %>"
+                                           data-bifrost-uri="<%= bifrostUriForFEComponents %>">
+            </wertgarantie-selection-pop-up>
+            <script type="module" src="<%= popUpData.popupComponentUri %>" crossorigin="anonymous"></script>
+        <% } %>
+        <form id="checkout-form" action="/checkout" method="POST">
+            <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
+            <div class="confirmation-container">
+                <wertgarantie-confirmation
+                        id="wg-confirmation"
+                        data-validation-trigger-selector="#checkout-form"
+                        data-client-id="<%= publicClientId %>"
+                        data-bifrost-uri="<%= bifrostUriForFEComponents %>">
+                </wertgarantie-confirmation>
+            </div>
+            <div class="shopping-cart-bottom">
+                <div>
+                    <div class="checkout-button-div">
+                        <button type="submit"
+                                class="checkoutBtn" <%= !cart || !cart.products ? 'disabled="disabled"' : '' %>>Zur
+                            Kasse gehen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="<%= confirmationComponentUri %>" crossorigin="anonymous"></script>
+    <script>
+        window.onload = function () {
+            var selection = document.getElementById('selection');
+            if (selection) {
+                selection.displayComponent();
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>

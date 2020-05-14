@@ -9,32 +9,39 @@
     <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
-<h1>Willkommen im Dummy-Shop mit nur einem Produkt</h1>
+<h1><%= product.name %></h1>
 <%- include('navbar') %>
 <div class="product-selection">
     <div class="product-selection__image">
-        <img src="<%= productImage %>" alt="nokia phone">
+        <img src="<%= product.image %>" alt="nokia phone">
     </div>
     <div class="product-selection__info">
         <h3>Produktinformation</h3>
         <div class="info__description">
-            <p><%= productName %></p>
+            <p><%= product.name %></p>
             <p>Details:</p>
             <ul>
-                <% productAttributes.forEach(attribute => { %>
+                <% product.attributes.forEach(attribute => { %>
                     <li><%= attribute %></li>
                 <% }); %>
             </ul>
         </div>
+        <div class="variant-selection">
+            <select name="variant" id="variant" onchange="swapVariants()">
+                <% product.variants.forEach(variant => { %>
+                    <option value="<%= variant.id%>" <%= variant.id === selectedVariant.id ? 'selected="selected"' : ''%>><%= variant.name %></option>
+                <% }); %>
+            </select>
+        </div>
         <div class="info__description">
             <h4>Preis:</h4>
-            <p><%= devicePrice/100 %> €</p>
+            <p><%= selectedVariant.devicePrice / 100 %> €</p>
         </div>
         <div class="order-panel">
             <form>
-                <input type="hidden" value="<%= productName %>" name="productName">
-                <input type="hidden" value="<%= devicePrice %>" name="productPrice">
-                <input type="hidden" value="efb026ec-14cd-4dfd-9056-37cb23f8f5b2" name="productId">
+                <input type="hidden" value="<%= product.name + ' ' + product %>" name="productName">
+                <input type="hidden" value="<%= product.id %>" name="productId">
+                <input type="hidden" value="<%= selectedVariant.id %>" name="variantId">
                 <button class="submit-button" formaction="/addToShoppingCart" formmethod="POST">In den Warenkorb
                 </button>
             </form>
@@ -47,6 +54,11 @@
         </div>
     </div>
 </div>
+<script>
+    function swapVariants() {
+        top.location.href = top.location.href.split("?variantId")[0] + "?variantId=" + document.getElementById('variant').value;
+    }
+</script>
 <script type="module" src="<%= ratingComponentUri %>" crossorigin="anonymous"></script>
 </body>
 </html>
