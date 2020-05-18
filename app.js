@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const basicAuth = require('express-basic-auth')
+const basicAuth = require('express-basic-auth');
+const sslRedirect = require('heroku-ssl-redirect');
 
 var app = express();
 
@@ -31,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
     }))
 }
 
-
+app.use(sslRedirect(['production', 'dev', 'staging']));
 app.use(express.static(path.join(__dirname, '/src/resources')));
 app.use('/healthcheck', require('express-healthcheck')());
 app.use('/heroku', require('./src/controllers/herokuController'));
