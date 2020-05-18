@@ -45,7 +45,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
         publicClientId: req.clientConfig.clientId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         confirmationComponentUri: COMPONENT_CONFIRMATION,
-        confirmationInitData: confirmationCompData
+        confirmationShopOrderBase64: Buffer.from(JSON.stringify(confirmationCompData)).toString('base64')
     });
 };
 
@@ -75,10 +75,10 @@ exports.changeVariant = function changeVariant(req, res) {
     const newVariant = _.find(product.variants, variant => variant.id === req.body.variantId);
     const shoppingCart = req.cookies.dummyshop;
     shoppingCart.products.forEach(cartProduct => {
-       if (cartProduct.orderItemId === orderItemIdToChange) {
-           cartProduct.selectedVariant = newVariant;
-           cartProduct.productName = product.name + " " + newVariant.name;
-       }
+        if (cartProduct.orderItemId === orderItemIdToChange) {
+            cartProduct.selectedVariant = newVariant;
+            cartProduct.productName = product.name + " " + newVariant.name;
+        }
     });
 
     res.cookie('dummyshop', shoppingCart);
