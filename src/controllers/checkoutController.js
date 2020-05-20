@@ -52,7 +52,8 @@ exports.checkout = async function checkout(req, res, next) {
     const sessionId = req.cookies['wertgarantie-session-id'];
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
-    const wertgarantieCheckoutData = createWertgarantieCheckoutData(sessionId, shopProducts, req.clientConfig);
+    const clientConfig = req.clientConfig;
+    const wertgarantieCheckoutData = createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig);
 
     // 2: render new page with data for after sales component checkout
     res.render('purchaseComplete', {
@@ -60,6 +61,7 @@ exports.checkout = async function checkout(req, res, next) {
         orderId: newOrderId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         afterSalesComponentUri: process.env.COMPONENT_AFTER_SALES,
-        wertgarantieCheckoutData: wertgarantieCheckoutData
+        wertgarantieCheckoutData: wertgarantieCheckoutData,
+        publicClientId: clientConfig.clientId
     });
 };
