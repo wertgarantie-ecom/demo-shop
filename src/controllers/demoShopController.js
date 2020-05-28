@@ -11,7 +11,9 @@ exports.showClientConfigPage = function showClientConfigPage(req, res, next) {
 };
 
 exports.insurances = function insurances(req, res) {
+    const currentClientConfig = req.clientConfig;
     res.render('insurances', {
+        publicClientId: currentClientConfig.clientId,
         bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
         landingPageComponentUri: process.env.COMPONENT_LANDING_PAGE
     })
