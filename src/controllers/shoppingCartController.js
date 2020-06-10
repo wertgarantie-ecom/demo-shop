@@ -33,7 +33,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
                 price: product.selectedVariant.devicePrice,
                 manufacturer: product.manufacturer,
                 deviceClass: product.deviceClass,
-                model: product.productName,
+                name: product.productName,
                 orderItemId: product.orderItemId
             }
         }));
