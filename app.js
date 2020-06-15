@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const basicAuth = require('express-basic-auth');
 const sslRedirect = require('heroku-ssl-redirect');
+const shopConfigurationService = require('./src/shop-configuration/shopConfigurationService');
 
 var app = express();
 
@@ -52,5 +53,7 @@ app.use(function (err, req, res) {
     res.status(err.status || 500);
     res.render('error', {title: 'Error'});
 });
+
+shopConfigurationService.updateShopConfigurations();
 
 module.exports = app;

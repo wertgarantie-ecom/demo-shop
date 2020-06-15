@@ -1,7 +1,7 @@
-const clientConfig = getEnvironmentClientConfig(process.env.NODE_ENV);
+const shopConfigHolder = require('../shop-configuration/shopConfigurationHolder');
 
 exports.getClientSelectionData = function getClientSelectionData() {
-    return Object.entries(clientConfig).map(([key, value]) => {
+    return Object.entries(shopConfigHolder.getCurrentConfiguration()).map(([key, value]) => {
         return {
             clientId: key,
             name: value.name
@@ -9,15 +9,3 @@ exports.getClientSelectionData = function getClientSelectionData() {
     });
 };
 
-function getEnvironmentClientConfig(nodeEnv) {
-    switch (nodeEnv) {
-        case 'staging':
-            return require('../config/clientConfigStaging');
-        case 'production':
-            return require('../config/clientConfigProduction');
-        default:
-            return require('../config/clientConfigLocalDev');
-    }
-}
-
-exports.clientConfig = clientConfig;
