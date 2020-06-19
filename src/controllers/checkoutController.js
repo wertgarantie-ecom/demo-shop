@@ -29,7 +29,8 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
         return {
             price: cartProduct.selectedVariant.devicePrice,
             manufacturer: cartProduct.product.manufacturer,
-            deviceClass: cartProduct.product.deviceClass,
+            deviceClass: cartProduct.product.deviceClass || undefined,
+            deviceClasses: cartProduct.product.deviceClasses || undefined,
             name: cartProduct.productName,
             orderItemId: cartProduct.orderItemId
         };

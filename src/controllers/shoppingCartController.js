@@ -15,7 +15,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
         showPopUp = true;
         popUpData = {
             orderItemId: newShoppingCartItem.orderItemId,
-            deviceClass: newShoppingCartItem.product.deviceClass,
+            deviceClasses: newShoppingCartItem.product.deviceClasses,
             devicePrice: newShoppingCartItem.selectedVariant.devicePrice,
             productName: newShoppingCartItem.productName,
             clientId: clientConfig.clientId,
@@ -32,7 +32,7 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
             return {
                 price: product.selectedVariant.devicePrice,
                 manufacturer: product.manufacturer,
-                deviceClass: product.deviceClass,
+                deviceClasses: product.deviceClasses,
                 name: product.productName,
                 orderItemId: product.orderItemId
             }
