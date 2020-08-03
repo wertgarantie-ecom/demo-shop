@@ -37,6 +37,7 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
 
     return {
         id: clientConfig.clientId,
+        stage: process.env.NODE_ENV,
         cartProducts: cartProducts,
         customer: customerData,
         encryptedSessionId: encryptedSessionId
