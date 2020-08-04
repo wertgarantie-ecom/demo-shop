@@ -44,6 +44,7 @@
                     </div>
                     <div class="table-body__item"><%= cartProduct.selectedVariant.devicePrice / 100 %> €</div>
                 </div>
+                <div class="embedded-selection-placeholder"></div>
                 <hr/>
                 <% sum += parseFloat(cartProduct.selectedVariant.devicePrice) %>
             <% }); %>
@@ -63,27 +64,9 @@
             </div>
         </div>
     </div>
-    <% if (popUpData) { %>
-        <wertgarantie-selection-pop-up id="selection"
-                                       data-product-name="<%= popUpData.productName %>"
-                                       data-device-price="<%= popUpData.devicePrice %>"
-                                       data-device-classes="<%= popUpData.deviceClasses %>"
-                                       data-order-item-id="<%= popUpData.orderItemId %>"
-                                       data-client-id="<%= publicClientId %>"
-                                       data-bifrost-uri="<%= bifrostUriForFEComponents %>">
-        </wertgarantie-selection-pop-up>
-        <script type="module" src="<%= popUpData.popupComponentUri %>" crossorigin="anonymous"></script>
-    <% } %>
     <form id="checkout-form" action="/checkout" method="POST">
         <input type="hidden" name="wertgarantie-cookie-data" id="wertgarantie-cookie">
         <div class="confirmation-container">
-            <wertgarantie-confirmation
-                    id="wg-confirmation"
-                    data-validation-trigger-selector="#checkout-form"
-                    data-client-id="<%= publicClientId %>"
-                    data-shop-order-base64="<%= confirmationShopOrderBase64 %>"
-                    data-bifrost-uri="<%= bifrostUriForFEComponents %>">
-            </wertgarantie-confirmation>
         </div>
         <div class="shopping-cart-bottom">
             <div>
@@ -97,6 +80,17 @@
         </div>
     </form>
 </div>
-<script type="module" src="<%= confirmationComponentUri %>" crossorigin="anonymous"></script>
+<script type="module">
+    import initWertgarantieComponents from 'http://localhost:3334/packages/package-loader/src/wertgarantieLoader.js';
+
+    const shopConfig = {
+        id: "public:5209d6ea-1a6e-11ea-9f8d-778f0ad9137f",
+        cartProducts: <%- JSON.stringify(cart.products.map(cartProduct => { return {sku: cartProduct.orderItemId, name: cartProduct.productName, deviceClasses: cartProduct.product.deviceClasses, price: cartProduct.selectedVariant.devicePrice };})) %>,
+        stage: "local"
+    };
+
+    initWertgarantieComponents(shopConfig);
+</script>
+
 </body>
 </html>

@@ -25,24 +25,23 @@ function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
     }
     const encryptedSessionId = CryptoJS.HmacSHA256(sessionId, clientConfig.secret).toString();
 
-    const purchasedShopProducts = shopProducts.map(cartProduct => {
+    const cartProducts = shopProducts.map(cartProduct => {
         return {
-            price: cartProduct.selectedVariant.devicePrice,
-            manufacturer: cartProduct.product.manufacturer,
-            deviceClass: cartProduct.product.deviceClass || undefined,
-            deviceClasses: cartProduct.product.deviceClasses || undefined,
+            sku: cartProduct.orderItemId,
             name: cartProduct.productName,
-            orderItemId: cartProduct.orderItemId
+            deviceClasses: cartProduct.product.deviceClasses || undefined,
+            price: cartProduct.selectedVariant.devicePrice,
+            manufacturer: cartProduct.product.manufacturer
         };
     });
 
-    const wertgarantieCheckoutDataBuffer = Buffer.from(JSON.stringify({
-        purchasedProducts: purchasedShopProducts,
+    return {
+        id: clientConfig.clientId,
+        stage: process.env.NODE_ENV,
+        cartProducts: cartProducts,
         customer: customerData,
         encryptedSessionId: encryptedSessionId
-    }));
-
-    return wertgarantieCheckoutDataBuffer.toString('base64');
+    };
 }
 
 exports.checkout = async function checkout(req, res, next) {

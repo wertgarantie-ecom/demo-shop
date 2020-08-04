@@ -19,11 +19,12 @@
         <li><%= product.productName %></li>
     <% }) %>
 </ul>
-<wertgarantie-after-sales data-bifrost-uri="<%= bifrostUriForFEComponents %>"
-                          data-shop-purchase-data="<%= wertgarantieCheckoutData %>"
-                          data-client-id="<%= publicClientId %>"
-></wertgarantie-after-sales>
+<script type="module">
+    import initWertgarantieComponents from 'http://localhost:3334/packages/package-loader/src/wertgarantieLoader.js';
 
-<script type="module" src="<%= afterSalesComponentUri %>" crossorigin="anonymous"></script>
+    initWertgarantieComponents(<%- JSON.stringify(wertgarantieCheckoutData) %>);
+</script>
+
+
 </body>
 </html>
