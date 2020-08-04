@@ -19,7 +19,7 @@ const customerData = {
     email: CUSTOMER_EMAIL
 };
 
-function createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig) {
+function createWertgarantieLoaderConfigurationData(sessionId, shopProducts, clientConfig) {
     if (!sessionId) {
         return undefined
     }
@@ -53,15 +53,14 @@ exports.checkout = async function checkout(req, res, next) {
     var dummyshopCookie = req.cookies.dummyshop;
     const shopProducts = dummyshopCookie ? dummyshopCookie.products : [];
     const clientConfig = req.clientConfig;
-    const wertgarantieCheckoutData = createWertgarantieCheckoutData(sessionId, shopProducts, clientConfig);
+    const wertgarantieLoaderConfig = createWertgarantieLoaderConfigurationData(sessionId, shopProducts, clientConfig);
 
     // 2: render new page with data for after sales component checkout
     res.render('purchaseComplete', {
         orderedProducts: shopProducts,
         orderId: newOrderId,
-        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
-        afterSalesComponentUri: process.env.COMPONENT_AFTER_SALES,
-        wertgarantieCheckoutData: wertgarantieCheckoutData,
-        publicClientId: clientConfig.clientId
+        wertgarantieLoaderConfig: wertgarantieLoaderConfig,
+        publicClientId: clientConfig.clientId,
+        componentLoader: process.env.COMPONENT_LOADER
     });
 };

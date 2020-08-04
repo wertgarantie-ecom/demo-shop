@@ -1,30 +1,8 @@
 const uuid = require('uuid');
-const COMPONENT_SELECTION_POP_UP = process.env.COMPONENT_SELECTION_POP_UP;
-const COMPONENT_CONFIRMATION = process.env.COMPONENT_CONFIRMATION;
-const COMPONENT_RATING = process.env.COMPONENT_RATING;
-const BIFROST_URI_FOR_FE_COMPONENTS = process.env.BIFROST_URI_FOR_FE_COMPONENTS || process.env.BIFROST_URI;
 const _ = require('lodash');
 
 exports.showShoppingCart = function showShoppingCart(req, res) {
     const shoppingCartData = req.cookies.dummyshop;
-    const clientConfig = req.clientConfig;
-    let showPopUp = false;
-    let popUpData;
-    const newShoppingCartItem = req.cookies["newItem"];
-    if (newShoppingCartItem) {
-        showPopUp = true;
-        popUpData = {
-            orderItemId: newShoppingCartItem.orderItemId,
-            deviceClasses: newShoppingCartItem.product.deviceClasses,
-            devicePrice: newShoppingCartItem.selectedVariant.devicePrice,
-            productName: newShoppingCartItem.productName,
-            clientId: clientConfig.clientId,
-            bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
-            popupComponentUri: COMPONENT_SELECTION_POP_UP,
-            ratingComponentUri: COMPONENT_RATING
-        };
-        res.clearCookie("newItem")
-    }
 
     const confirmationCompData = [];
     if (shoppingCartData) {
@@ -40,12 +18,9 @@ exports.showShoppingCart = function showShoppingCart(req, res) {
     }
     res.render("shoppingCart", {
         cart: shoppingCartData,
-        showPopUp: showPopUp,
-        popUpData: popUpData,
         publicClientId: req.clientConfig.clientId,
-        bifrostUriForFEComponents: BIFROST_URI_FOR_FE_COMPONENTS,
-        confirmationComponentUri: COMPONENT_CONFIRMATION,
-        confirmationShopOrderBase64: Buffer.from(JSON.stringify(confirmationCompData)).toString('base64')
+        stage: process.env.NODE_ENV,
+        componentLoader: process.env.COMPONENT_LOADER
     });
 };
 
@@ -65,7 +40,6 @@ exports.addProductToShoppingCart = function addProductToShoppingCart(req, res) {
     };
     dummyshopCookie.products.push(newOrderItem);
     res.cookie('dummyshop', dummyshopCookie);
-    res.cookie('newItem', newOrderItem);
     res.redirect('/shoppingCart');
 };
 

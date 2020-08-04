@@ -20,9 +20,9 @@
     <% }) %>
 </ul>
 <script type="module">
-    import initWertgarantieComponents from 'http://localhost:3334/packages/package-loader/src/wertgarantieLoader.js';
+    import initWertgarantieComponents from '<%= componentLoader %>';
 
-    initWertgarantieComponents(<%- JSON.stringify(wertgarantieCheckoutData) %>);
+    initWertgarantieComponents(<%- JSON.stringify(wertgarantieLoaderConfig) %>);
 </script>
 
 

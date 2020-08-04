@@ -81,12 +81,12 @@
     </form>
 </div>
 <script type="module">
-    import initWertgarantieComponents from 'http://localhost:3334/packages/package-loader/src/wertgarantieLoader.js';
+    import initWertgarantieComponents from '<%= componentLoader %>';
 
     const shopConfig = {
-        id: "public:5209d6ea-1a6e-11ea-9f8d-778f0ad9137f",
+        id: "<%= publicClientId %>",
         cartProducts: <%- JSON.stringify(cart.products.map(cartProduct => { return {sku: cartProduct.orderItemId, name: cartProduct.productName, deviceClasses: cartProduct.product.deviceClasses, price: cartProduct.selectedVariant.devicePrice };})) %>,
-        stage: "local"
+        stage: "<%= stage %>"
     };
 
     initWertgarantieComponents(shopConfig);
