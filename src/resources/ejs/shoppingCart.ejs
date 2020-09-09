@@ -85,10 +85,11 @@
 
     const shopConfig = {
         id: "<%= publicClientId %>",
-        cartProducts: <%- JSON.stringify(cart.products.map(cartProduct => { return {sku: cartProduct.orderItemId, name: cartProduct.productName, deviceClasses: cartProduct.product.deviceClasses, price: cartProduct.selectedVariant.devicePrice };})) %>,
         stage: "<%= stage %>"
     };
-
+    <% if (cart) { %>
+        shopConfig.cartProducts = <%- JSON.stringify(cart.products.map(cartProduct => { return {sku: cartProduct.orderItemId, name: cartProduct.productName, deviceClasses: cartProduct.product.deviceClasses, price: cartProduct.selectedVariant.devicePrice };})) %>
+    <% } %>
     initWertgarantieComponents(shopConfig);
 </script>
 
