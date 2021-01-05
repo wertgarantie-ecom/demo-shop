@@ -8,7 +8,7 @@
     "start-docker-compose": "NODE_ENV=dockerlocal nodemon ./bin/www"
   },
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "cookie-parser": "1.4.4",
     "crypto-js": "^4.0.0",
     "debug": "2.6.9",
