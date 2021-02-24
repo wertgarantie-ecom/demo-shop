@@ -39,6 +39,7 @@ function createWertgarantieLoaderConfigurationData(sessionId, shopProducts, clie
         id: clientConfig.clientId,
         stage: process.env.NODE_ENV,
         cartProducts: cartProducts,
+        orderId: uuid(),
         customer: customerData,
         encryptedSessionId: encryptedSessionId
     };
