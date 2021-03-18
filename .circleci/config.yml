@@ -38,7 +38,7 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          only-branch: master
+          only-branch: development
           app-name: wertgarantie-demo-shop-dev
   deploy-staging:
     executor: heroku/default
@@ -46,7 +46,7 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          only-branch: master
+          only-branch: staging
           app-name: wertgarantie-demo-shop-staging
   deploy-production:
     executor: heroku/default
