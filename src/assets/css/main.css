@@ -1,0 +1,135 @@
+@import "./_vars.css";
+
+* {
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+
+/* BACKDROP */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  display: none;
+}
+
+/* NAVBAR */
+
+.header {
+  background: var(--primaryColor);
+  position: sticky;
+  color: white;
+  top: 0;
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.header .nav {
+  height: 100%;
+  align-items: center;
+}
+
+.header .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.header .nav-list .nav-list__item {
+  margin: 0 1rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header .nav-list .nav-list__item a {
+  text-decoration: none;
+  color: white;
+}
+
+.header .nav-list .nav-list__item a:hover,
+.header .nav-list .nav-list__item a:active,
+.header .nav-list .nav-list__item a.active {
+  color: var(--secondaryColor);
+}
+
+/* Layout */
+.content {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  min-height: 5rem;
+  margin: 0 1rem;
+}
+
+h1 {
+  font-weight: lighter;
+  margin: 2rem 0 1rem 0;
+}
+
+/* helpers */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+
+.d-flex{
+  display: flex;
+}
+
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .content {
+    margin: 2rem 2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    padding: 0 8rem;
+  }
+
+  .content {
+    margin: 2rem 9rem;
+  }
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow.arrow--right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}

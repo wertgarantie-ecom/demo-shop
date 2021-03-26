@@ -1,0 +1,33 @@
+<div class="backdrop"></div>
+<header class="header">
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-list__item">
+                <a href="/">Alle Shops</a>
+            </li>
+            <% if (locals.navigation && navigation.shop) { %>
+                <li>
+                    <i class="arrow arrow--right"></i>
+                </li>
+                <li class="nav-list__item">
+                    <b>
+                        <a href="/shop/<%= navigation.shop.id %>"><%= navigation.shop.name %></a>
+                    </b>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-list__item nav-list__item--cart ">
+                <a href="/cart">
+                    Warenkorb 
+                    <% if (locals.navigation && navigation.cartCount) { %>
+                        (<%= navigation.cartCount %>)
+                    <% } %>
+                    &#128722;
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>

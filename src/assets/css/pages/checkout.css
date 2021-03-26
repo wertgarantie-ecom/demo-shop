@@ -1,0 +1,101 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.card {
+  display: flex;
+  padding: 1rem;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.26);
+  margin-bottom: 1rem;
+  flex-direction: column;
+}
+
+.card:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.card img {
+  max-width: 100%;
+}
+
+.card main {
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.form-control {
+  margin-top: 0.5rem;
+}
+
+.card__title {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+@media screen and (min-width: 768px) {
+  .card {
+    flex-direction: row;
+  }
+
+  .card img {
+    max-width: 10rem;
+  }
+
+  .card main {
+    padding: 0 0 0 1rem;
+  }
+
+  .form-control {
+    max-width: 15rem;
+  }
+
+  .card__title {
+    font-size: 1.1rem;
+  }
+
+}
+
+
+/* source: https://stackoverflow.com/a/54702294/13533930 */
+#shadowBox {
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.26);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.rainbow {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+  font-family: monospace;
+  letter-spacing: 5px;
+}
+.rainbow_text_animated {
+  background: linear-gradient(
+    to right,
+    #6666ff,
+    #0099ff,
+    #00ff00,
+    #ff3399,
+    #6666ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow_animation 6s ease-in-out infinite;
+  background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 100% 0;
+  }
+}
