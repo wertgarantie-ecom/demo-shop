@@ -1,9 +1,6 @@
-// dotenv | declare before custom imports / routes
+const sslRedirect = require('heroku-ssl-redirect');
 import dotenv from 'dotenv';
 import path from 'path';
-dotenv.config({ path: path.join(__dirname, `config/${process.env.NODE_ENV}.env`) });
-
-const sslRedirect = require('heroku-ssl-redirect');
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from "morgan";
@@ -11,6 +8,9 @@ import basicAuth from 'express-basic-auth';
 import { errorService, pageNotFoundService } from "./services/error.service";
 import shopRoutes from "./routes/shop.routes";
 import { herokuService } from "./services/heroku.service";
+
+// dotenv | declare before custom imports / routes
+dotenv.config({ path: path.join(__dirname, `config/${process.env.NODE_ENV}.env`) });
 
 // vars
 const app = express();
