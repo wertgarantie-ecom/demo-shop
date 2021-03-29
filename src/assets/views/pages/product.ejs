@@ -1,0 +1,108 @@
+<%- include('../includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/button.css">
+
+<!-- last -->
+<link rel="stylesheet" href="/css/pages/product.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="content">
+        <h1><%= pageTitle %> </h1>
+
+        <div class="productContainer">
+
+            <div class="left">
+                <img src="<%= product.image !== undefined ? product.image : '../../img/logo_placeholder.png' %>" alt="<%= product.name %>">
+            </div>
+            <div class="right">
+                <b><%= product.name %> </b>
+                <br>
+                <br>
+                <form action="/cart" method="POST">
+
+                    <input type="hidden" value="<%= shop.id %>" name="clientId">
+                    <input type="hidden" value="<%= product.id %>" name="productId">
+
+                    <div class="form-control">
+                        <label for="variant">Ausführung</label>
+                        <select name="variant" id="variant" data-productId="<%= product.id %> ">
+                            <% product.variants.forEach((variant, index) => { %>
+                                <% if (variant.id === pageVariant.id) { %>
+                                    <option selected id="<%= variant.id %>" value="<%= variant.id %>" data-price="<%= variant.price %>"><%= variant.name %></option>
+                                <% } else { %>
+                                    <option id="<%= variant.id %>" value="<%= variant.id %>" data-price="<%= variant.price %> "><%= variant.name %></option>
+                                <% } %>
+                            
+                            <% }) %>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="product-details">
+                        <p>Merkmale</p>
+                        <ul>
+                            <% product.attributes.forEach(attr => { %>
+                             <li><%= attr %> </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <hr>
+                    
+                    <!-- choose first element as default price -->
+                    <p>Preis: <span id="price"><%= pageVariant.price / 100 %> €</span></p>
+
+                    <!-- Embedded placeholder -->
+                    <div id="wertgarantie-selection"></div>
+                    <br>
+                    <button type="submit" class="button button--secondary">In den Einkaufswagen</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+            const variantEl = document.getElementById('variant');
+            const priceEl = document.getElementById('price');
+            const options = variantEl.children;
+
+            // change price on variant selection
+            variantEl.addEventListener('change', event => {
+
+                // change page
+                document.location.href = `/shop/${"<%= shop.id %>"}/${"<%= product.id %>"}/${event.target.value}`;
+
+                // const selectedEl = document.getElementById(event.target.value);
+                // priceEl.innerText = `${parseInt(selectedEl.dataset.price) / 100} €`;
+
+                // add or remove the selected attribute
+                // Array.from(options).forEach(option => {
+                //     if(option.id === event.target.value) option.setAttribute('selected', true);
+                //     else option.removeAttribute('selected')
+                // })
+            });
+    </script>
+
+<script type="module">
+
+    import initWertgarantieComponents from '<%= componentLoader %>';
+
+    const shopConfig = {
+        id: "<%= shop.id %>",
+        stage: "<%= stage %>",
+        displayedProduct: {
+            sku: "<%= product.id %>",
+            name: "<%= product.name %>",
+            deviceClasses: "<%= product.deviceClasses %>",
+            price: "<%= pageVariant.price %>"
+        }
+    };
+
+    initWertgarantieComponents(shopConfig);
+</script>
+
+    
+<%- include('../includes/end.ejs') %>
