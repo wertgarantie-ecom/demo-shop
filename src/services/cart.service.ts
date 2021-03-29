@@ -3,7 +3,7 @@ import { Product } from "../models/product.model";
 import { Shop } from "../models/shop.model";
 import { Cart, CartItem } from "../models/cart.model";
 import { v4 } from 'uuid';
-import { fetchProductById, fetchShopDataById } from "../util/data.service";
+import { fetchProductById, fetchShopDataById } from "./data.service";
 import CryptoJS from "crypto-js";
 
 // customer dummy data

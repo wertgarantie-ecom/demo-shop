@@ -9,9 +9,9 @@ export const fetchAllShopData = async (): Promise<Shop[]> => {
 
     switch (NODE_ENV) {
         case 'staging':
-            return (await import("../config/clientConfigStaging")).default
+            return (await import("../config/config_staging")).default
         case 'production':
-            return (await import("../config/clientConfigProduction")).default
+            return (await import("../config/config_production")).default
         default:
             return (await import("../config/clientConfigLocalDev")).default
     }

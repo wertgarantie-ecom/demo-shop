@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { Cart } from "../models/cart.model";
 import { Product } from "../models/product.model";
 import { Shop } from "../models/shop.model";
-import { fetchAllShopData, fetchShopDataById, fetchProductById } from '../util/data.service';
+import { fetchAllShopData, fetchShopDataById, fetchProductById } from './data.service';
 
 
 /**
