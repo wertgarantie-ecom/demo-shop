@@ -6,7 +6,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "prestart": "dotenv -e './build/config/${NODE_ENV}.env'",
+    "prestart": "dotenv -e ./build/config/${NODE_ENV}.env",
     "start": "node ./build/server.js",
     "dev": "NODE_ENV=local nodemon -L ./src/server.ts",
     "start-local": "NODE_ENV=local PORT=3002 nodemon ./src/server.ts",
@@ -18,7 +18,7 @@
     "cookie-parser": "1.4.4",
     "crypto-js": "^4.0.0",
     "dotenv": "8.2.0",
-    "dotenv-cli": "^4.0.0",
+    "dotenv-cli": "^3.1.0",
     "ejs": "3.1.6",
     "express": "4.16.1",
     "express-basic-auth": "^1.2.0",
