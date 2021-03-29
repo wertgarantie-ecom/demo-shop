@@ -6,7 +6,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "dotenv -e ./build/config/${NODE_ENV}.env node ./build/server.js",
+    "start": "dotenv -e './build/config/${NODE_ENV}.env' node ./build/server.js",
     "dev": "NODE_ENV=local nodemon -L ./src/server.ts",
     "start-local": "NODE_ENV=local PORT=3002 nodemon ./src/server.ts",
     "start-docker-compose": "NODE_ENV=dockerlocal nodemon ./src/server.ts",
