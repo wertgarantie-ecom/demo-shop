@@ -9,7 +9,7 @@ export const fetchAllShopData = async (): Promise<Shop[]> => {
 
     switch (NODE_ENV) {
         case 'staging':
-            return (await import("../config/clientConfigLocalDev")).default
+            return (await import("../config/clientConfigStaging")).default
         case 'production':
             return (await import("../config/clientConfigLocalDev")).default
         default:

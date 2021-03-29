@@ -1,7 +1,5 @@
 FROM node:latest
 
-RUN apt-get update && apt-get install -y git-crypt
-
 RUN mkdir -p /app/demoshop
 WORKDIR /app/demoshop/
 COPY package*.json /app/demoshop/
