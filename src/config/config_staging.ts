@@ -39,7 +39,7 @@ const shops: Shop[] = [
         products: [
             {...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad'},
             {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'},
-            {...products.electronics.lg_c9_oled, deviceClasses: '332,5080,4983'},
+            {...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV'},
             {...products.smartphones.bapple_x, deviceClasses: 'Smartphone'},
             {...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk'}
         ]

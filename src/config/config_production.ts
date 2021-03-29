@@ -37,11 +37,11 @@ const shops: Shop[] = [
         id: 'public:b7751ffa-07bc-4947-b856-c7e7f68967e2',
         secret: process.env.SECRET_TESTSHOP || '',
         products: [
-            { ...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad' },
-            { ...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs' },
-            { ...products.electronics.lg_c9_oled, deviceClasses: '332,5080,4983' },
-            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
-            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk' }
+            {...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad'},
+            {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'},
+            {...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV'},
+            {...products.smartphones.bapple_x, deviceClasses: 'Smartphone'},
+            {...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk'}
         ]
     },
     // {

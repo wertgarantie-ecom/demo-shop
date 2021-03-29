@@ -26,11 +26,11 @@ const shops: Shop[] = [
         id: "public:b9f303d0-74e1-11ea-b9e9-034d1bd36e8d",
         secret: "secret:test-handyflash-secret",
         products: [
-            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
-            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk' },
-            { ...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad' },
-            { ...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs' },
-            { ...products.electronics.lg_c9_oled, deviceClasses: '332,5080,4983' }
+            {...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad'},
+            {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'},
+            {...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV'},
+            {...products.smartphones.bapple_x, deviceClasses: 'Smartphone'},
+            {...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk'}
         ],
     },
     {
