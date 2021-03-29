@@ -1,0 +1,107 @@
+<%- include('../includes/head.ejs') %>
+
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/button.css">
+
+<!-- last -->
+<link rel="stylesheet" href="/css/pages/cart.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="content">
+        <div class="titleContainer">
+            <h1 class="title"><%= pageTitle %> </h1>
+            <h1 class="sum"><%= cart ? `${cart.sum} €` : '' %></h1>
+        </div>
+
+        <div class="cardContainer">
+
+            <% if (cart && cart.products && cart.products.length) { %>
+             
+                <% cart.products.forEach(item => { %>
+                    <article class="card">
+                        <header>
+                            <img src="<%= item.product.image !== undefined ? item.product.image : '../../img/logo_placeholder.png' %>" alt="<%= item.product.name %>">
+                        </header>
+                        <main class="wertgarantie-selection-multi">
+                            <div class="card__title">
+                                <b><%= item.product.name %></b>
+                                <b><%= (item.selectedVariant.price / 100) %> €</b>
+                            </div>
+    
+                            <div class="form-control">
+                                <label for="variant">Ausführung</label>
+                                <select disabled name="variant" id="variant" data-productId="<%= item.product.id %> ">
+                                    <option selected id="<%= item.selectedVariant.id %>" value="<%= item.selectedVariant.id %>" ><%= item.selectedVariant.name %></option>
+                                </select>
+                            </div>
+
+                            <div class="product-details">
+                                <p>Beschreibung</p>
+                                <i>
+                                    <% item.product.attributes.forEach((attr, index) => { %>
+                                     <%= attr %><% if (index < item.product.attributes.length -1 ) { %>,<% } %>
+                                    <% }) %>
+                                </i>
+                            </div>
+
+                            <!-- <div class="wertgarantie-selection-multi"></div> -->
+
+                            <form action="/cart/delete" method="POST">
+                                <input type="hidden" value="<%= item.orderItemId %>" name="orderItemId">
+                                <button type="submit" class="button button--danger">Löschen</button>
+                            </form>
+    
+                        </main>
+                    </article>
+                <% }) %>
+
+                <div id="confirmation-container"></div>
+
+                
+                <div class="checkoutContainer">
+                    <form action="/checkout" method="POST">
+                        <button type="submit" id="checkout-button" class="button button--success" style="padding:1rem; width: 100%;">Kostenpflichtig bestellen</button>
+                    </form>
+                </div>
+
+            <% } else { %>
+                
+                <p>Dein Warenkorb ist leer &#128586; &#128722;</p>
+
+            <% } %>
+        
+            
+    </div>
+
+    </main>
+
+    <script type="module">
+
+        import initWertgarantieComponents from '<%= componentLoader %>';
+    
+        const shopConfig = {
+            id: "<%= clientId %>",
+            stage: "<%= stage %>",
+        };
+
+        <% if (cart) { %>
+            shopConfig.cartProducts = <%- JSON.stringify(cart.products.map(item => { 
+                return {
+                    sku: item.product.id, 
+                    name: item.product.name, 
+                    deviceClasses: item.product.deviceClasses, 
+                    price: item.selectedVariant.price 
+                };
+                })) %>
+                console.log(shopConfig)
+        <% } %>
+                
+        initWertgarantieComponents(shopConfig);
+    </script>
+    
+    
+<%- include('../includes/end.ejs') %>

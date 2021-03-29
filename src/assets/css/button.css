@@ -1,0 +1,70 @@
+.button{
+  padding: 0.5rem;
+  border: none;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.button + a,
+.button + a:visited {
+  color: black
+}
+
+.button:disabled {
+  background: lightgray;
+}
+
+.button + a.button--primary,
+.button + a.button--primary:visited,
+.button + a.button--secondary,
+.button + a.button--secondary:visited,
+.button + a.button--danger,
+.button + a.button--danger:visited {
+  color: white
+}
+
+
+.button:hover:not(:disabled) {
+  cursor: pointer;
+}
+
+.button--primary {
+    color: white;
+    background: var(--primaryColor);
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--primaryColorDarker);
+}
+
+.button--secondary {
+    color: white;
+    background: var(--secondaryColor);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: var(--secondaryColorDarker);
+}
+
+.button--danger {
+  color: white;
+  background: var(--dangerColor);
+}
+
+.button--danger:hover:not(:disabled) {
+  background: var(--dangerColorDarker);
+}
+
+.button--success {
+  color: white;
+  background: var(--successColor);
+}
+
+.button--success:hover:not(:disabled) {
+  background: var(--successColorDarker);
+}

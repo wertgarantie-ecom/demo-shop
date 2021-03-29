@@ -1,0 +1,56 @@
+<%- include('../includes/head.ejs') %>
+
+<!-- last -->
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/pages/checkout.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="content">
+            <h1 class="title"><%= pageTitle %> </h1>
+            <i>Bestellnummer: <%= orderId %></i>
+            <div id="shadowBox">
+                <h3 class="rainbow rainbow_text_animated">Danke für Ihre Bestellung</h3>
+            </div>
+
+            
+
+            <b>Bestellte Produkte:</b>
+            <div class="cardContainer">
+                <% orderedProducts.forEach(item => { %>
+                    <article class="card">
+                        <header>
+                            <img src="<%= item.product.image !== undefined ? item.product.image : '../../img/logo_placeholder.png' %>" alt="<%= item.product.name %>">
+                        </header>
+                        <main>
+                            <div class="card__title">
+                                <b><%= item.product.name %></b>
+                                <b><%= (item.selectedVariant.price / 100) %> €</b>
+                            </div>
+    
+                            <div class="form-control">
+                                <label for="variant">Ausführung</label>
+                                <select disabled name="variant" id="variant" data-productId="<%= item.product.id %> ">
+                                    <option selected id="<%= item.selectedVariant.id %>" value="<%= item.selectedVariant.id %>" ><%= item.selectedVariant.name %></option>
+                                </select>
+                            </div>
+                        </main>
+                    </article>
+                <% }) %>
+            </div>
+
+            <b style="margin-bottom: 1rem;">Ihre Versicherung:</b>
+            <div id="after-sales-container"></div>
+    </main>
+
+<script type="module">
+    import initWertgarantieComponents from '<%= componentLoader %>';
+
+    initWertgarantieComponents(<%- JSON.stringify(wertgarantieLoaderConfig) %>);
+</script>
+
+    
+<%- include('../includes/end.ejs') %>

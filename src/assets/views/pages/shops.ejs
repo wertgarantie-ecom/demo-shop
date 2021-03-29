@@ -1,0 +1,31 @@
+<%- include('../includes/head.ejs') %>
+
+<!-- last -->
+<link rel="stylesheet" href="/css/pages/shops.css">
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="content">
+        <h1><%= pageTitle %> </h1>
+
+        <div class="cardContainer">
+        
+            <% shops.forEach(shop => { %>
+                <a class="card card--shop" href="/shop/<%= shop.id %> ">
+                    <header>
+                        
+                        <img src="<%= shop.image !== undefined ? shop.image : '../../img/logo_placeholder.png' %>" alt="<%= shop.name %>">
+                    </header>
+                    <main>
+                        <i><%= shop.name %></i>
+                    </main>
+                </a>
+            <% }) %>
+    </div>
+            
+    </main>
+    
+<%- include('../includes/end.ejs') %>
