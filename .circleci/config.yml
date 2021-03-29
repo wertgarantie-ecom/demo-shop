@@ -33,6 +33,7 @@ jobs:
     executor: heroku/default
     steps:
       - checkout
+      - run: git-crypt unlock
       - heroku/install
       - heroku/deploy-via-git:
           only-branch: dev
