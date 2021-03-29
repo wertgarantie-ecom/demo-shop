@@ -39,9 +39,9 @@ const shops: Shop[] = [
         secret: "secret:test-ce-secret",
         image: 'https://www.clevertronic.de/img/xlogo.png.pagespeed.ic.Z641NjDGpa.webp',
         products: [
-            { ...products.smartphones.bapple_x, deviceClasses: '332,460' },
-            { ...products.smartphones.flash_handy_se, deviceClasses: '332,460' },
-            { ...products.electronics.lg_c9_oled, deviceClasses: '332,5080,4983' }
+            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
+            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone' },
+            { ...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV' }
         ],
     },
 ];
