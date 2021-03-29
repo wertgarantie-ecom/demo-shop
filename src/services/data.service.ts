@@ -13,7 +13,7 @@ export const fetchAllShopData = async (): Promise<Shop[]> => {
         case 'production':
             return (await import("../config/config_production")).default
         default:
-            return (await import("../config/clientConfigLocalDev")).default
+            return (await import("../config/config_dev")).default
     }
 }
 
