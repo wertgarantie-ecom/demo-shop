@@ -6,7 +6,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "prestart": "dotenv -p NODE_ENV dotenv -e ./build/config/${NODE_ENV}.env --debug",
+    "prestart": "dotenv -p NODE_ENV dotenv -e ./config/${NODE_ENV}.env --debug",
     "start": "node ./build/server.js",
     "build": "rimraf ./build && tsc && npm run copy-files",
 
