@@ -10,9 +10,9 @@ import CryptoJS from "crypto-js";
 const customer = {
     company: 'INNOQ',
     salutation: 'Herr',
-    firstname: process.env.CUSTOMER_FIRST_NAME || 'Max',
-    lastname: process.env.CUSTOMER_LAST_NAME || 'Mustermann',
-    street: 'Unter den Linden 9',
+    firstname: process.env.CUSTOMER_FIRST_NAME || 'Mäx',
+    lastname: process.env.CUSTOMER_LAST_NAME || 'Müßtermánn',
+    street: 'Ünter den Lindèn 9',
     zip: '52345',
     city: 'Köln',
     country: 'Deutschland',

@@ -6,19 +6,21 @@
     "node": "14.x"
   },
   "scripts": {
-    "prestart": "dotenv -e ./build/config/${NODE_ENV}.env",
+    "prestart": "dotenv -p NODE_ENV dotenv -e ./build/config/${NODE_ENV}.env --debug",
     "start": "node ./build/server.js",
-    "dev": "NODE_ENV=local nodemon -L ./src/server.ts",
-    "start-local": "NODE_ENV=local PORT=3002 nodemon ./src/server.ts",
-    "start-docker-compose": "NODE_ENV=dockerlocal nodemon ./src/server.ts",
     "build": "rimraf ./build && tsc && npm run copy-files",
+
+    "dev": "NODE_ENV=local npm run load-dotenv && NODE_ENV=local nodemon -L ./src/server.ts",
+    "start-local": "NODE_ENV=local npm run load-dotenv && NODE_ENV=local PORT=3002 nodemon ./src/server.ts",
+    "start-docker-compose": "NODE_ENV=dockerlocal npm run load-dotenv && NODE_ENV=dockerlocal nodemon ./src/server.ts",
+    "load-dotenv": "dotenv -e ./src/${NODE_ENV}.env --debug",
     "copy-files": "copyfiles -u  1 './src/assets/**' './build/' && copyfiles -u  1 './src/config/*.env' './build/'"
   },
   "dependencies": {
     "cookie-parser": "1.4.4",
     "crypto-js": "^4.0.0",
     "dotenv": "8.2.0",
-    "dotenv-cli": "^3.1.0",
+    "dotenv-cli": "^4.0.0",
     "ejs": "3.1.6",
     "express": "4.16.1",
     "express-basic-auth": "^1.2.0",
