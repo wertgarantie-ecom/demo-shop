@@ -71,7 +71,7 @@ const smartphones = {
 const bikes = {
     mega_bike_3000_pro: {
         id: "427f4e92-e67c-4885-861a-612f2c8cbeca",
-        name: "Mega Bike 3000 Pro",
+        name: "Mega Bike 3000 Prö",
         image: "https://cdn.pixabay.com/photo/2013/07/13/13/43/racing-bicycle-161449_1280.png",
         manufacturer: "Mega Bikes Inc.",
         attributes: [
