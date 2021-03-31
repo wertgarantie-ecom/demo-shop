@@ -11,6 +11,8 @@ import { herokuService } from "./services/heroku.service";
 
 // dotenv | declare before custom imports / routes
 dotenv.config({ path: path.join(__dirname, `config/${process.env.NODE_ENV}.env`) });
+console.log(__dirname)
+console.log(path.join(__dirname, `config/${process.env.NODE_ENV}.env`))
 
 // vars
 const app = express();
