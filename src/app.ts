@@ -10,9 +10,11 @@ import shopRoutes from "./routes/shop.routes";
 import { herokuService } from "./services/heroku.service";
 
 // dotenv | declare before custom imports / routes
-dotenv.config({ path: path.join(__dirname, `config/${process.env.NODE_ENV}.env`) });
+// dotenv.config({ path: path.join(__dirname, `config/${process.env.NODE_ENV}.env`) });
+dotenv.config({ path: path.join(__dirname, '..', `src/config/${process.env.NODE_ENV}.env`) });
 console.log(__dirname)
 console.log(path.join(__dirname, `config/${process.env.NODE_ENV}.env`))
+console.log(path.join(__dirname, '..', `src/config/${process.env.NODE_ENV}.env`))
 
 // vars
 const app = express();
