@@ -11,7 +11,7 @@ const customer = {
     company: 'INNOQ',
     salutation: 'Herr',
     firstname: process.env.CUSTOMER_FIRST_NAME || 'Mäx',
-    lastname: process.env.CUSTOMER_LAST_NAME || 'Müßtermánn',
+    lastname: process.env.CUSTOMER_LAST_NAME || 'Müßtermánñ',
     street: 'Ünter den Lindèn 9',
     zip: '52345',
     city: 'Köln',
