@@ -12,6 +12,8 @@ import { herokuService } from "./services/heroku.service";
 // declare before custom imports / routes | path needs to stay at /src (also for production) or git-crypt will not resolve
 dotenv.config({ path: path.join(__dirname, '..', `src/config/${process.env.NODE_ENV}.env`) });
 
+console.log(process.env.CUSTOMER_FIRST_NAME)
+
 // vars
 const app = express();
 const user = process.env.BASIC_AUTH_USER;

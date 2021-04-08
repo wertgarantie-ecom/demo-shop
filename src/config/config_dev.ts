@@ -22,6 +22,16 @@ const shops: Shop[] = [
         ],
     },
     {
+        name: "Radhaus Ingolstadt",
+        id: "public:0fe268a3-a713-4054-b2ab-ee9979d8b07b",
+        secret: "secret:362c530e-b539-4555-8cac-d396705221ac",
+        image: "https://radhaus-in.de/wp-content/uploads/2018/01/Radhaus-Ingolstadt_Logo.png",
+        products: [
+            { ...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad' },
+            { ...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs' },
+        ],
+    },
+    {
         name: "Test Shop",
         id: "public:b9f303d0-74e1-11ea-b9e9-034d1bd36e8d",
         secret: "secret:test-handyflash-secret",
