@@ -64,6 +64,8 @@ const getShoppingCart = async (req: Request, res: Response, next: NextFunction) 
 
         if (!cart.clientId?.length) throw new Error('No Shop ID specified');
 
+        console.log(customer)
+
         // get shop (for navigation only)
         const shop = await fetchShopDataById(cart.clientId) as Shop;
 
@@ -132,8 +134,6 @@ const checkout = async (req: Request, res: Response, next: NextFunction) => {
 
     const sessionId: string = req.cookies['wertgarantie-session-id'];
     const wertgarantieLoaderConfig = createWertgarantieLoaderConfigurationData(sessionId, cartProducts, shop);
-
-    console.log(cartProducts)
 
     // render page
     res.render('pages/checkout', {
