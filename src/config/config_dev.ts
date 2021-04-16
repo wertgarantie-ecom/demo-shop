@@ -56,7 +56,7 @@ const shops: Shop[] = [
     },
     {
         name: "Clevertronic v2",
-        id: "public:76b31bb2-c4f7-11ea-9487-6fcbeb12db26",
+        id: "public:e4fabcfa-72d1-4310-b541-9751abf8ea0e",
         secret:  "secret:e32aaf95-3af6-4220-bfb8-c431aad62d85",
         image: 'https://www.clevertronic.de/img/xlogo.png.pagespeed.ic.Z641NjDGpa.webp',
         products: [
