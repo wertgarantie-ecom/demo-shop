@@ -22,6 +22,16 @@ const shops: Shop[] = [
             {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'}
         ]
     },
+    {
+        name: "WeCycle (Demoshop)",
+        id: "public:e9314854-4811-4237-aa8b-bd91144d01f2",
+        secret: process.env.SECRET_BOC_DEMO || '',
+        image: "https://www.wecycle.de/out/wecycle/img/logo.png",
+        products: [
+            {...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad'},
+            {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'}
+        ]
+    },
     // {
     //     name: "bikemarket24",
     //     id: "public:3addd4b4-dca5-45c7-b8a9-64b9cfbd95cd",
