@@ -54,6 +54,17 @@ const shops: Shop[] = [
             { ...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV' }
         ],
     },
+    {
+        name: "Clevertronic v2",
+        id: "public:e4fabcfa-72d1-4310-b541-9751abf8ea0e",
+        secret:  "secret:e32aaf95-3af6-4220-bfb8-c431aad62d85",
+        image: 'https://www.clevertronic.de/img/xlogo.png.pagespeed.ic.Z641NjDGpa.webp',
+        products: [
+            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
+            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone' },
+            { ...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV' }
+        ],
+    },
 ];
 
 
