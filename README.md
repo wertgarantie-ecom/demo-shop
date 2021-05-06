@@ -15,6 +15,17 @@ Mit dem Demo-Shop können die Wertgarantie-Komponenten getestet werden. Die Konf
 
 Codeseitig sind dazu keine Änderungen notwendig (die Platzhalter für die Komponenten sind auf den entsprechenden Seiten hinterlegt). Alleine die Client-Konfiguration (Shop) entscheidet darüber, ob eine Komponente gerendet wird.
 
+## Setup
+The demo shop gets started by the `docker-compose up -d` command within the bifrost. The demo shop needs to have the bifrost running.
+
+To run locally:
+```
+npm i
+npm run dev
+```
+
+### Troubleshooting dev
+If the components are not displayed, even though all containers are running, try rebuilding the bifrost-components, then hard reloading the browser.
 
 ## Related projects
 
