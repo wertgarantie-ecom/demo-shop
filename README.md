@@ -1,5 +1,7 @@
+<br/>
+<br/>
 <p align="center">
-    
+<img width="500" src="https://wertgarantie-bifrost.s3.eu-central-1.amazonaws.com/wertgarantie-logo.svg" alt="wertgarantie-logo">
 </p>
 <br/>
 <p align="center">
