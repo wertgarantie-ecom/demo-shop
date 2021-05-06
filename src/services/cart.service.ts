@@ -62,7 +62,7 @@ const getShoppingCart = async (req: Request, res: Response, next: NextFunction) 
 
         const cart = req.cookies.demoShopCart as Cart || {};
 
-        if (!cart.clientId?.length) throw new Error('No Shop ID specified');
+        if (!cart.clientId?.length) throw new Error('Kein Shop ausgewählt');
 
         console.log(customer)
 
@@ -86,6 +86,7 @@ const getShoppingCart = async (req: Request, res: Response, next: NextFunction) 
         // render page
         res.render('pages/cart', {
             pageTitle: 'Warenkorb',
+            pagePath: "cart",
             cart: cart,
             clientId: shop.id,
             stage: process.env.NODE_ENV,
@@ -125,7 +126,7 @@ const checkout = async (req: Request, res: Response, next: NextFunction) => {
     const cart = req.cookies.demoShopCart as Cart;
     const cartProducts: CartItem[] = cart.products || [];
 
-    if (!cart.clientId?.length) throw new Error('No Shop ID specified');
+    if (!cart.clientId?.length) throw new Error('Kein Shop ausgewählt');
 
     const shop = await fetchShopDataById(cart.clientId) as Shop;
     
@@ -138,6 +139,7 @@ const checkout = async (req: Request, res: Response, next: NextFunction) => {
     // render page
     res.render('pages/checkout', {
         pageTitle: 'Checkout',
+        pagePath: "checkout",
         orderedProducts: cartProducts,
         orderId: v4(),
         wertgarantieLoaderConfig: wertgarantieLoaderConfig,

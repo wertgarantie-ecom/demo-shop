@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import logger from "morgan";
 import basicAuth from 'express-basic-auth';
 
+
 // declare before custom imports / routes | path needs to stay at /src (also for production) or git-crypt will not resolve
 dotenv.config({ path: path.join(__dirname, '..', `src/config/${process.env.NODE_ENV}.env`) });
 

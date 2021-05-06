@@ -7,3 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= pageTitle %></title>
     <link rel="stylesheet" href="/css/main.css">
+
+    <script type="module">
+        const navs = document.getElementsByClassName('nav-list__item');
+        
+        if(window.location.pathname !== 'cart') {
+    
+            const currentPath = "/<%= pagePath %>"
+        
+        
+            Array.from(navs).forEach(nav => {
+                if(currentPath === nav.getAttribute('data-path')) {
+                    nav.classList.add('nav-list__item--active')
+                }
+            });
+        }
+
+    </script>

@@ -2,24 +2,25 @@
 <header class="header">
     <nav class="nav">
         <ul class="nav-list">
-            <li class="nav-list__item">
+            <li class="nav-list__item" data-path="/">
                 <a href="/">Alle Shops</a>
             </li>
             <% if (locals.navigation && navigation.shop) { %>
                 <li>
                     <i class="arrow arrow--right"></i>
                 </li>
-                <li class="nav-list__item">
-                    <b>
-                        <a href="/shop/<%= navigation.shop.id %>"><%= navigation.shop.name %></a>
-                    </b>
+                <li class="nav-list__item" data-path="/shop">
+                    <a href="/shop/<%= navigation.shop.id %>"><%= navigation.shop.name %></a>
                 </li>
             <% } %>
+            <li class="nav-list__item" data-path="/dashboard">
+                <a href="/dashboard">Dashboard</a>
+            </li>
         </ul>
     </nav>
     <nav class="nav">
         <ul class="nav-list">
-            <li class="nav-list__item nav-list__item--cart ">
+            <li class="nav-list__item" data-path="/cart">
                 <a href="/cart">
                     Warenkorb 
                     <% if (locals.navigation && navigation.cartCount) { %>
@@ -30,4 +31,5 @@
             </li>
         </ul>
     </nav>
+    
 </header>

@@ -19,6 +19,7 @@ const getShops = async (req: Request, res: Response, next: NextFunction) => {
     // render page
     res.render('pages/shops', {
         pageTitle: "Shops Übersicht",
+        pagePath: "",
         shops: shops
     });
 }
@@ -42,6 +43,7 @@ const getShopById = async (req: Request, res: Response, next: NextFunction) => {
     // render page
     res.render('pages/shop', {
         pageTitle: shop ? shop.name : 'Dummy Shop',
+        pagePath: "shop",
         shop: shop,
         navigation: { ...navigation },
     });
@@ -75,6 +77,7 @@ const getProductById = async (req: Request, res: Response, next: NextFunction) =
     // render page
     res.render('pages/product', {
         pageTitle: product ? product.name : 'Dummy Product',
+        pagePath: "shop",
         shop: shop,
         product: product,
         pageVariant: variant,
