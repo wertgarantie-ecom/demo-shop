@@ -46,6 +46,7 @@ const getShopById = async (req: Request, res: Response, next: NextFunction) => {
         pagePath: "shop",
         shop: shop,
         navigation: { ...navigation },
+        colors: shop.colors
     });
 }
 
@@ -84,6 +85,7 @@ const getProductById = async (req: Request, res: Response, next: NextFunction) =
         stage: process.env.NODE_ENV,
         componentLoader: process.env.COMPONENT_LOADER,
         navigation: { ...navigation },
+        colors: shop.colors
     });
 }
 

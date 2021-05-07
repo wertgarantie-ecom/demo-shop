@@ -89,7 +89,8 @@ const getShoppingCart = async (req: Request, res: Response, next: NextFunction) 
             clientId: shop.id,
             stage: process.env.NODE_ENV,
             componentLoader: process.env.COMPONENT_LOADER,
-            navigation: { ...navigation }
+            navigation: { ...navigation },
+            colors: shop.colors
         });
 
     } catch (error) {
@@ -143,7 +144,8 @@ const checkout = async (req: Request, res: Response, next: NextFunction) => {
         orderedProducts: cartProducts,
         orderId: v4(),
         wertgarantieLoaderConfig: wertgarantieLoaderConfig,
-        componentLoader: process.env.COMPONENT_LOADER
+        componentLoader: process.env.COMPONENT_LOADER,
+        colors: shop.colors
     });
 }
 

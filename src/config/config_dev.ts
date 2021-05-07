@@ -1,5 +1,6 @@
 import { products } from "./shopProducts";
 import { Shop } from "../models/shop.model";
+import { COLORS } from "./shopColors";
 
 const shops: Shop[] = [
     {
@@ -20,6 +21,7 @@ const shops: Shop[] = [
             { ...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad' },
             { ...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs' },
         ],
+        colors: COLORS.boc
     },
     {
         name: "Radhaus Ingolstadt",
@@ -36,11 +38,11 @@ const shops: Shop[] = [
         id: "public:b9f303d0-74e1-11ea-b9e9-034d1bd36e8d",
         secret: "secret:test-handyflash-secret",
         products: [
-            {...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad'},
-            {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'},
-            {...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV'},
-            {...products.smartphones.bapple_x, deviceClasses: 'Smartphone'},
-            {...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk'}
+            { ...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad' },
+            { ...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs' },
+            { ...products.electronics.lg_c9_oled, deviceClasses: 'Smartphone,TV' },
+            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
+            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk' }
         ],
     },
     {
@@ -57,7 +59,7 @@ const shops: Shop[] = [
     {
         name: "Clevertronic v2",
         id: "public:e4fabcfa-72d1-4310-b541-9751abf8ea0e",
-        secret:  "secret:e32aaf95-3af6-4220-bfb8-c431aad62d85",
+        secret: "secret:e32aaf95-3af6-4220-bfb8-c431aad62d85",
         image: 'https://www.clevertronic.de/img/xlogo.png.pagespeed.ic.Z641NjDGpa.webp',
         products: [
             { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
