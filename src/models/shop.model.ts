@@ -5,5 +5,6 @@ export interface Shop {
     id: string,
     secret: string,
     image?: string,
-    products: Product[]
+    products: Product[],
+    colors?: object
 }

@@ -8,6 +8,28 @@
     <title><%= pageTitle %></title>
     <link rel="stylesheet" href="/css/main.css">
 
+    <!-- primary colors -->
+    <% if (locals.colors) { %>
+        <style>
+            :root {
+                --primaryColor: <%= colors.primaryColor %>;
+                --primaryColorLighter: <%= colors.primaryColorLighter %>;
+                --primaryColorDarker: <%= colors.primaryColorDarker %>;
+            }
+        </style>
+    <% } %>
+
+    <!-- if also secondary colors -->
+    <% if (locals.colors && locals.colors.secondaryColor) { %>
+        <style>
+            :root {
+                --secondaryColor: <%= colors.secondaryColor %>;
+                --secondaryColorLighter: <%= colors.secondaryColorLighter %>;
+                --secondaryColorDarker: <%= colors.secondaryColorDarker %>;
+            }
+        </style>
+    <% } %>
+
     <script type="module">
         const navs = document.getElementsByClassName('nav-list__item');
         

@@ -1,5 +1,6 @@
 import { products } from './shopProducts';
 import {Shop} from "../models/shop.model"
+import { COLORS } from './shopColors';
 
 const shops: Shop[] = [
     // {
@@ -13,17 +14,18 @@ const shops: Shop[] = [
     //     ]
     // },
     {
-        name: "B.O.C. (Demoshop)",
+        name: "B.O.C.",
         id: "public:7f5183d4-99cb-47d5-9b0e-5576e0a6ef8e",
         secret: process.env.SECRET_BOC_DEMO || '',
         image: "https://www.boc24.de/1368410b715a88a5afd2885bb489ab27b03d77f1/assets/boc/images/logo.png",
         products: [
             {...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike,Fahrrad'},
             {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'}
-        ]
+        ],
+        colors: COLORS.boc
     },
     {
-        name: "WeCycle (Demoshop)",
+        name: "WeCycle",
         id: "public:e9314854-4811-4237-aa8b-bd91144d01f2",
         secret: process.env.SECRET_BOC_DEMO || '',
         image: "https://www.wecycle.de/out/wecycle/img/logo.png",
