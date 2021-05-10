@@ -1,5 +1,10 @@
 export const COLORS = {
-    boc: getColors("#009c3c", "#c3c3c3")
+    boc: getColors("#009c3c", "#c3c3c3"),
+    wecycle: getColors("#af131a", "#616160"),
+    radhaus_ingolstadt: getColors("#c80f0a", "#d9dadc"),
+    clevertronic: getColors("#222", "#edefed"),
+    cwmobile: getColors("#369", "#d0157d"),
+    bikemarket24: getColors("#183962", "#ffcd00")
 }
 
 
