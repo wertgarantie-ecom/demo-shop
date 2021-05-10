@@ -5,17 +5,16 @@ import { Shop } from "../models/shop.model";
  * Loads and returns dummy shopdata
  */
 export const fetchAllShopData = async (): Promise<Shop[]> => {
-    const NODE_ENV = process.env.NODE_ENV;
 
-    switch (NODE_ENV) {
-        case 'staging':
-            return (await import("../config/config_staging")).default
-        case 'production':
-            return (await import("../config/config_production")).default
-        default:
-            return (await import("../config/config_dev")).default
-    }
+    // fetch shops
+    const shops = (await import("../config/config.shops")).default
+
+    // filter out shops which have no id and secret in .ENV Files
+    const shopsWithIdandSecret = [...shops.filter(shop => shop.id && shop.secret)] 
+
+    return shopsWithIdandSecret
 }
+
 
 /**
  * Fetch data of a specific shop
@@ -36,6 +35,7 @@ export const fetchShopDataById = async (shopId: string): Promise<Shop> => {
 
     return shop;
 }
+
 
 /**
  * Fetch a product of a specific shop
