@@ -34,6 +34,17 @@ const shops: Shop[] = [
         ],
     },
     {
+        name: "Radhaus Ingolstadt",
+        id: process.env.RADHAUS_INGOLSTADT_ID || '',
+        secret: process.env.RADHAUS_INGOLSTADT_SECRET || '',
+        image: "https://radhaus.de/pub/media/logo/stores/1/logo.png",
+        colors: COLORS.radhaus_ingolstadt,
+        products: [
+            { ...products.bikes.mega_bike_3000_pro, deviceClasses: 'Bike' },
+            { ...products.bikes.e_bike_super5, deviceClasses: 'E-Bike' }
+        ],
+    },
+    {
         name: "Clevertronic",
         id: process.env.CLEVERTRONIC_ID || '',
         secret: process.env.CLEVERTRONIC_SECRET || '',
