@@ -90,12 +90,18 @@
 
         <% if (cart) { %>
             shopConfig.cartProducts = <%- JSON.stringify(cart.products.map(item => { 
-                return {
+
+                const current = {
                     sku: item.product.id, 
                     name: item.product.name, 
                     deviceClasses: item.product.deviceClasses, 
                     price: item.selectedVariant.price 
                 };
+
+                if(item.product.condition) current.condition = item.product.condition;
+
+                return current;
+
                 })) %>
                 console.log(shopConfig)
         <% } %>
