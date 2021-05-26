@@ -6,6 +6,7 @@ export interface Product {
     attributes: string[],
     deviceClasses: string,
     variants: Variant[],
+    condition?: string
 }
 
 export interface Variant {

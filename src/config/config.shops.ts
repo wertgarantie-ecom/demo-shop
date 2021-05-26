@@ -51,9 +51,9 @@ const shops: Shop[] = [
         image: "https://www.clevertronic.de/img/xlogo.png.pagespeed.ic.Z641NjDGpa.webp",
         colors: COLORS.clevertronic,
         products: [
-            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
-            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk' },
-            { ...products.electronics.lg_c9_oled, deviceClasses: '332,5080,4983' }
+            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone', condition: "0" },
+            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone,Mobilfunk', condition: "11" },
+            { ...products.electronics.lg_c9_oled, deviceClasses: '332,5080,4983', condition: "0" }
         ]
     },
     {
