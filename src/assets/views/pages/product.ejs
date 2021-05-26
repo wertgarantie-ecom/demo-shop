@@ -41,6 +41,11 @@
                             <% }) %>
                         </select>
                     </div>
+                    <% if (product.condition) { %>
+                        <div class="form-control">
+                            <label>Condition: <%= product.condition %> </label>
+                        </div>
+                    <% } %>
                     <hr>
                     <div class="product-details">
                         <p>Merkmale</p>

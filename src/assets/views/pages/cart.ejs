@@ -39,6 +39,12 @@
                                 </select>
                             </div>
 
+                            <% if (item.product.condition) { %>
+                                <div class="form-control">
+                                    <small>Condition: <%= item.product.condition %> </small>
+                                </div>
+                            <% } %>
+
                             <div class="product-details">
                                 <p>Beschreibung</p>
                                 <i>
