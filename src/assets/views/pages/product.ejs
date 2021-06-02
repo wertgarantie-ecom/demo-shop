@@ -69,6 +69,19 @@
         </div>
     </main>
 
+    <script type="module">
+        // import initWertgarantieComponents from '<%= componentLoader %>';
+
+        // initWertgarantieComponents(event.detail.shopConfig)
+        
+        function hi(name) {console.log("hey " + name)}
+        document.addEventListener('wg-loaded', event => {
+            event.detail.hello()
+            hi(event.detail.name)
+            // initWertgarantieComponents(event.detail.shopConfig)
+        })
+    </script>
+
     <script>
             const variantEl = document.getElementById('variant');
             const priceEl = document.getElementById('price');
@@ -111,5 +124,10 @@
     initWertgarantieComponents(shopConfig);
 </script>
 
+<script type="module">
+    const name = "Harald";
+    const hello = () => console.log("hi");
+    document.dispatchEvent(new CustomEvent("wg-loaded", {detail: {hello: hello, name: name}}));
+</script>
     
 <%- include('../includes/end.ejs') %>
