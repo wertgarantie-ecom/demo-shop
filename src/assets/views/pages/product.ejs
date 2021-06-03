@@ -69,65 +69,62 @@
         </div>
     </main>
 
-    <script type="module">
-        // import initWertgarantieComponents from '<%= componentLoader %>';
-
-        // initWertgarantieComponents(event.detail.shopConfig)
-        
-        function hi(name) {console.log("hey " + name)}
-        document.addEventListener('wg-loaded', event => {
-            event.detail.hello()
-            hi(event.detail.name)
-            // initWertgarantieComponents(event.detail.shopConfig)
-        })
-    </script>
-
     <script>
             const variantEl = document.getElementById('variant');
             const priceEl = document.getElementById('price');
             const options = variantEl.children;
 
-            // change price on variant selection
-            variantEl.addEventListener('change', event => {
-
-                // change page
-                document.location.href = `/shop/${"<%= shop.id %>"}/${"<%= product.id %>"}/${event.target.value}`;
-
-                // const selectedEl = document.getElementById(event.target.value);
-                // priceEl.innerText = `${parseInt(selectedEl.dataset.price) / 100} €`;
-
-                // add or remove the selected attribute
-                // Array.from(options).forEach(option => {
-                //     if(option.id === event.target.value) option.setAttribute('selected', true);
-                //     else option.removeAttribute('selected')
-                // })
-            });
+            // change page
+            variantEl.addEventListener('change', event => document.location.href = `/shop/${"<%= shop.id %>"}/${"<%= product.id %>"}/${event.target.value}`);
     </script>
 
-<script type="module">
+    <!-- IMPLEMENTATION -->
+    <!-- IMPLEMENTATION -->
+    
+    <!-- use case with event listener part 1/2 -->
+    <script type="module">
+        import initWertgarantieComponents from '<%= componentLoader %>';
+        document.addEventListener('wg-loaded', event => initWertgarantieComponents(event.detail.shopConfig))
+    </script>
 
-    import initWertgarantieComponents from '<%= componentLoader %>';
 
-    const shopConfig = {
-        id: "<%= shop.id %>",
-        stage: "<%= stage %>",
-        displayedProduct: {
-            sku: "<%= product.id %>",
-            name: "<%= product.name %>",
-            deviceClasses: "<%= product.deviceClasses %>",
-            price: "<%= pageVariant.price %>"
-        }
-    };
+    <!-- Normal use case -->
+    <script type="module">
 
-    if("<%= product.condition %>") shopConfig.condition = "<%= product.condition %>";
+        import initWertgarantieComponents from '<%= componentLoader %>';
 
-    initWertgarantieComponents(shopConfig);
-</script>
+        const shopConfig = {
+            id: "<%= shop.id %>",
+            stage: "<%= stage %>",
+            displayedProduct: {
+                sku: "<%= product.id %>",
+                name: "<%= product.name %>",
+                deviceClasses: "<%= product.deviceClasses %>",
+                price: "<%= pageVariant.price %>"
+            }
+        };
 
-<script type="module">
-    const name = "Harald";
-    const hello = () => console.log("hi");
-    document.dispatchEvent(new CustomEvent("wg-loaded", {detail: {hello: hello, name: name}}));
-</script>
+        if("<%= product.condition %>") shopConfig.condition = "<%= product.condition %>";
+
+        initWertgarantieComponents(shopConfig);
+    </script>
+
+    <!-- use case with event listener part 2/2 -->
+    <script type="module">
+        const shopConfig = {
+            id: "<%= shop.id %>",
+            stage: "<%= stage %>",
+            displayedProduct: {
+                sku: "<%= product.id %>",
+                name: "<%= product.name %>",
+                deviceClasses: "<%= product.deviceClasses %>",
+                price: "<%= pageVariant.price %>"
+            }
+        };
+
+        if("<%= product.condition %>") shopConfig.condition = "<%= product.condition %>";
+
+        document.dispatchEvent(new CustomEvent("wg-loaded", {detail: {shopConfig: shopConfig}}));
+    </script>
     
 <%- include('../includes/end.ejs') %>
