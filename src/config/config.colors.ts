@@ -4,7 +4,8 @@ export const COLORS = {
     radhaus_ingolstadt: getColors("#c80f0a", "#d9dadc"),
     clevertronic: getColors("#222", "#edefed"),
     cwmobile: getColors("#369", "#d0157d"),
-    bikemarket24: getColors("#183962", "#ffcd00")
+    bikemarket24: getColors("#183962", "#ffcd00"),
+    kaijott: getColors("#495057", "#cc3333")
 }
 
 

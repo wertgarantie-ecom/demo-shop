@@ -77,6 +77,18 @@ const shops: Shop[] = [
             {...products.bikes.e_bike_super5, deviceClasses: 'Premium,E-Bike,Pedelecs'}
         ]
     },
+    {
+        name: "Kaijott",
+        id: process.env.KAIJOTT_ID || '',
+        secret: process.env.KAIJOTT_SECRET || '',
+        image: "https://cdn03.plentymarkets.com/dddn7qk2z8er/frontend/kj_logo_rgb-min.png",
+        colors: COLORS.kaijott,
+        products: [
+            { ...products.smartphones.bapple_x, deviceClasses: 'Smartphone' },
+            { ...products.smartphones.flash_handy_se, deviceClasses: 'Smartphone' },
+            { ...products.electronics.lg_c9_oled, deviceClasses: 'TV' }
+        ]
+    },
 ]
 
 export default shops;
